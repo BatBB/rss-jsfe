@@ -50,3 +50,35 @@
     margin-right: 100px;
   }
 }
+
+.backstage {
+  padding-top: 140px;
+  height: 640px;
+  background: url(../assets/images/flower_foto.jpg) no-repeat right center;
+  &__innner {
+    display: flex;
+  }
+  &__left {
+    flex: 1 0 auto;
+    width: 609px;
+    height: 403px;
+    margin-right: 87px;
+    background: url(../assets/images/bamboo-cap.jpg);
+    filter: blur(2px);
+  }
+  &__right {
+    // flex: 0 1 auto;
+    &-title {
+      margin-bottom: 20px;
+    }
+    .text-title {
+      margin-bottom: 54px;
+      line-height: 1.3;
+    }
+
+    &-subtitle {
+      margin-bottom: 34px;
+    }
+  }
+
+}
