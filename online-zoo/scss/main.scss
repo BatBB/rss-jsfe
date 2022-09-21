@@ -1,0 +1,52 @@
+@import './var';
+@import './global';
+
+.watch {
+  background: url(../assets/images/panda.jpg) center/cover no-repeat;
+
+  &__inner {
+    height: 780px;
+    margin-top: -80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__text {
+    width: 500px;
+    height: 400px;
+    margin-top: 166px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 0;
+    font: {
+      weight: 700;
+      size: 106.496px;
+    }
+
+    line-height: 0.75;
+    text-align: center;
+    text-transform: uppercase;
+    color: $white;
+
+    &-yellow {
+      color: $yellow;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 9px;
+      right: 108px;
+      width: 465px;
+      height: 465px;
+      border-radius: 50%;
+      background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+      z-index: -1;
+    }
+  }
+
+  &__button {
+    margin-right: 100px;
+  }
+}
