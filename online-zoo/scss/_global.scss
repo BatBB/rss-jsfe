@@ -115,6 +115,11 @@ body {
   line-height: 1.2;
 }
 
+.h3-title {
+  font-weight: 400;
+  font-size: 36px;
+}
+
 .footer {
   background-color: $footerColor;
   color: $white;
@@ -147,7 +152,7 @@ body {
       border: 0.7px solid $orange;
       border-radius: 2px;
       background-color: inherit;
-      color: $textInputColor;
+      color: $gray4;
       padding: 10px 7px 10px 10px;
 
       &:focus,
