@@ -1,0 +1,28 @@
+//colors
+$black: #000;
+$footerColor: #111115;
+$green: #4B9200;
+$blackBlue: #333B41;
+$white: #fff;
+$gray4: #BDBDBD;
+$lightGray: #F1F3F2;
+$red: #D31414;
+$orange: #F9804B;
+$orangeLight: #FE9013;
+$btnHover: #E47209;
+$linearColor: linear-gradient(113.96deg, $orange 1.49%, $orangeLight 101.44%);
+$pinkGradient: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%), linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+$yellow: #FFEE2E;
+
+
+@mixin gradient-border {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: linear-gradient(180deg, #FA6F32, #FE9013);
+  border-radius: 5px;
+  z-index: -2;
+}
