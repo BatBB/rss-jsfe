@@ -19,13 +19,15 @@
       <h1 class="header__title">PetStory Online</h1>
       <div class="container">
         <div class="header__inner">
-          <div class="header__inner-logo-nav">
-            <a class="header__logo" href="./index.html"
+          <div class="header__logo">
+            <a class="header__link" href="./index.html"
               ><img
                 class="header__logo-img"
                 src="./assets/images/logo.png"
                 alt="Logo image"
             /></a>
+          </div>
+          <div class="header__inner-nav-copyright">
             <nav class="nav">
               <ul class="nav__list">
                 <li class="nav__list-item">
@@ -47,13 +49,16 @@
                 </li>
               </ul>
             </nav>
+            <div class="header__copyright">
+              <a
+                class="header__copyright-link"
+                href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online"
+                >Designed by ©</a
+              >
+            </div>
           </div>
-          <div class="header__copyright">
-            <a
-              class="header__copyright-link"
-              href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online"
-              >Designed by ©</a
-            >
+          <div class="header__burger">
+            <span class="line"></span>
           </div>
         </div>
       </div>
@@ -435,7 +440,14 @@
               </div>
             </div>
             <div class="testimonials__progress">
-              <input class="testimonials__progress-input" type="range" min="0" max="100" step="1" value="20">
+              <input
+                class="testimonials__progress-input"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="20"
+              />
             </div>
             <a href="" class="testimonials__button btn btn-2">leave feedback</a>
           </div>
