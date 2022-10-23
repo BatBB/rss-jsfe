@@ -139,7 +139,7 @@ function init() {
 
         if (isDone()) {
           clearInterval(timerOn);
-          alert('You win!');
+          alert(`Hooray! You solved the puzzle in ${time} and ${moves} moves!`);
           return;
         }
         emptyCell = clickCell;
