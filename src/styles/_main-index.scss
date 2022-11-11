@@ -1,0 +1,30 @@
+.main {
+
+  &__wrapper {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &__btn {
+    min-width: 240px;
+    background-color: $btnColor;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px auto 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &:hover {
+      color: $textColorSecond;
+      background-color: $btnColorHover ;
+    }
+  }
+
+  &__videoplayer {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}

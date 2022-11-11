@@ -12,7 +12,6 @@ module.exports = {
   target,
   devtool,
   devServer: {
-    port: 8000,
     open: true,
     hot: true,
   },
@@ -54,7 +53,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.woff2?$/i,
+        test: /\.(woff2?|ttf)$/i,
         type: "asset/resource",
         generator: {
           filename: "fonts/[name][ext]",
