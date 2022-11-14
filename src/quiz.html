@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+  </head>
+  <body class="body">
+    <header class="header">
+      <div class="container header__wrapper">
+        <div class="header__logo">
+          <a href="/index.html" class="header__logo-link">
+            <h1 class="header__title title">Songbird</h1>
+          </a>
+        </div>
+        <nav class="header__nav nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="/index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/quiz.html" class="nav-link">Quiz</a>
+            </li>
+            <li class="nav-item"><a href="#" class="nav-link">Results</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Gallery</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container main__wrapper">
+        <section class="main__levels levels">
+          <div class="levels-item active">Разминка</div>
+          <div class="levels-item">Воробьиные</div>
+          <div class="levels-item">Лесные птицы</div>
+          <div class="levels-item">Певчие птицы</div>
+          <div class="levels-item">Хищные птицы</div>
+          <div class="levels-item">Морские птицы</div>
+        </section>
+        <section class="main__audioplayer audioplayer">
+          <div class="audioplayer-img"></div>
+          <div class="audioplayer-wrapper">
+            <div class="audioplayer-title">* * * * * *</div>
+            <div class="audioplayer-controls">
+              <button class="audioplayer-play"></button>
+              <input
+                type="range"
+                class="audioplayer-progressbar"
+                min="0"
+                max=""
+                value="0"
+              />
+            </div>
+            <div class="audioplayer-volume">
+              <button class="audioplayer-volume-btn"></button>
+              <input
+                class="audioplayer-volume-range"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+              />
+            </div>
+          </div>
+        </section>
+        <section class="main__answers answers">
+          <div class="answers-block">
+            <ul class="answers-list">
+              <li class="answers-item" data-ans="0">Answer</li>
+              <li class="answers-item" data-ans="1">Answer</li>
+              <li class="answers-item" data-ans="2">Answer</li>
+              <li class="answers-item" data-ans="3">Answer</li>
+              <li class="answers-item" data-ans="4">Answer</li>
+              <li class="answers-item" data-ans="5">Answer</li>
+            </ul>
+          </div>
+          <div class="answers-block">
+            <div class="answers-audioplayer">
+              <div class="audioplayer-img"></div>
+              <div class="audioplayer-wrapper">
+                <div class="audioplayer-title">Птица</div>
+                <div class="audioplayer-subtitle">отряд</div>
+                <div class="audioplayer-controls">
+                  <button class="audioplayer-play"></button>
+                  <input
+                    type="range"
+                    class="audioplayer-progressbar"
+                    min="0"
+                    max=""
+                    value="0"
+                  />
+                </div>
+                <div class="audioplayer-volume">
+                  <button class="audioplayer-volume-btn"></button>
+                  <input
+                    class="audioplayer-volume-range"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="descriptions">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Asperiores eius neque accusantium illum non, delectus quas cumque
+              rem blanditiis facilis, esse odio? Distinctio fuga eveniet harum
+              voluptatum, fugiat illum dolorem.
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__wrapper container">
+        <ul class="footer__list">
+          <li class="footer__item">
+            <a href="https://rs.school/js/" class="footer__link"
+              ><img
+                src="assets/images/rs_school_js.svg"
+                alt="RS-School logo"
+                class="footer__logo rss"
+            /></a>
+          </li>
+          <li class="footer__item">2022</li>
+          <li class="footer__item">
+            <a href="https://github.com/BatBB" class="footer__link"
+              ><img
+                src="assets/images/github-logo.png"
+                alt="Github logo"
+                class="footer__logo github"
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

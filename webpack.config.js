@@ -7,6 +7,8 @@ const devMode = mode === "development";
 const target = devMode ? "web" : "browserslist";
 const devtool = devMode ? "source-map" : undefined;
 
+const pages = ["index", "quiz"];
+
 module.exports = {
   mode,
   target,
@@ -15,21 +17,40 @@ module.exports = {
     open: true,
     hot: true,
   },
-  entry: path.resolve(__dirname, "src", "index.js"),
+  // entry: path.resolve(__dirname, "src", "index.js"),
+  entry: pages.reduce((config, page) => {
+    config[page] = `./src/${page}.js`;
+    return config;
+  }, {}),
   output: {
     path: path.resolve(__dirname, "dist"),
     clean: true,
     filename: "[name].[contenthash].js",
     assetModuleFilename: "assets/[hash][ext]",
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, "src", "index.html"),
+    // }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
-  ],
+  ].concat(
+    pages.map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          inject: true,
+          template: `./src/${page}.html`,
+          filename: `${page}.html`,
+          chunks: [page],
+        })
+    )
+  ),
   module: {
     rules: [
       {
