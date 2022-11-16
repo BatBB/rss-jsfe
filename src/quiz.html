@@ -44,13 +44,19 @@
             <div class="audioplayer-title">* * * * * *</div>
             <div class="audioplayer-controls">
               <button class="audioplayer-play"></button>
-              <input
-                type="range"
-                class="audioplayer-progressbar"
-                min="0"
-                max=""
-                value="0"
-              />
+              <div class="audioplayer-progressbar-timer">
+                <input
+                  class="audioplayer-progressbar"
+                  type="range"
+                  min="0"
+                  max=""
+                  value="0"
+                />
+                <div class="audioplayer-timer">
+                  <div class="current">00:00</div>
+                  <div class="duration">00:00</div>
+                </div>
+              </div>
             </div>
             <div class="audioplayer-volume">
               <button class="audioplayer-volume-btn"></button>
@@ -65,22 +71,13 @@
           </div>
         </section>
         <section class="main__answers answers">
-          <div class="answers-block">
-            <ul class="answers-list">
-              <li class="answers-item" data-ans="0">Answer</li>
-              <li class="answers-item" data-ans="1">Answer</li>
-              <li class="answers-item" data-ans="2">Answer</li>
-              <li class="answers-item" data-ans="3">Answer</li>
-              <li class="answers-item" data-ans="4">Answer</li>
-              <li class="answers-item" data-ans="5">Answer</li>
-            </ul>
-          </div>
+          <div class="answers-block" id="answers-block"></div>
           <div class="answers-block">
             <div class="answers-audioplayer">
               <div class="audioplayer-img"></div>
               <div class="audioplayer-wrapper">
-                <div class="audioplayer-title">Птица</div>
-                <div class="audioplayer-subtitle">отряд</div>
+                <div class="audioplayer-title">* * * * * *</div>
+                <div class="audioplayer-subtitle"></div>
                 <div class="audioplayer-controls">
                   <button class="audioplayer-play"></button>
                   <input
@@ -103,12 +100,7 @@
                 </div>
               </div>
             </div>
-            <div class="descriptions">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores eius neque accusantium illum non, delectus quas cumque
-              rem blanditiis facilis, esse odio? Distinctio fuga eveniet harum
-              voluptatum, fugiat illum dolorem.
-            </div>
+            <div class="descriptions hidden"></div>
           </div>
         </section>
       </div>

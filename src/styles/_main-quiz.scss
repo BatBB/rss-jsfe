@@ -80,13 +80,29 @@
     background-image: url("assets/images/play.svg");
   }
 
-  &-progressbar {
-    opacity: .8;
-    background: #fff;
+  .pause {
+    background-image: url("assets/images/pause.svg");
+  }
+
+  &-progressbar-timer {
     max-width: 200px;
     width: 100%;
+  }
+
+  &-progressbar {
+    opacity: .8;
+    width: 100%;
+    background: #fff;
     transition: 0.25s;
     cursor: pointer;
+  }
+
+  &-timer {
+    display: flex;
+    justify-content: space-between;
+    height: 16px;
+    align-items: center;
+    font-size: 11px;
   }
 
   &-volume {
@@ -167,11 +183,25 @@
       max-width: 150px;
     }
   }
-
-
 }
 
 .active {
   background-color: white;
   color: black
+}
+
+.hidden {
+  display: none;
+}
+
+.through {
+  text-decoration: line-through;
+}
+
+.right {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
 }
