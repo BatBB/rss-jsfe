@@ -2,13 +2,15 @@ export function createAudioBlock(bird, answerIsRight = false) {
   //создание элементов плеера
   const playerImg = document.createElement("div");
   playerImg.className = "audioplayer-img";
+  if (answerIsRight) playerImg.style.backgroundImage = `url(${bird.image})`;
 
   const playerWrapper = document.createElement("div");
   playerWrapper.className = "audioplayer-wrapper";
 
   const audioTitle = document.createElement("div");
   audioTitle.className = "audioplayer-title";
-  audioTitle.innerText = answerIsRight ? bird.name : "* * * * * *";
+  let title = `${bird.name} (${bird.species})`;
+  audioTitle.innerText = answerIsRight ? title : "* * * * * *";
   const playerControls = document.createElement("div");
   playerControls.className = "audioplayer-controls";
 
@@ -78,12 +80,12 @@ export function createAudioBlock(bird, answerIsRight = false) {
     clickVolume();
   });
 
-  progressBar.addEventListener("change", (el) => {
+  progressBar.addEventListener("input", (el) => {
     pauseTime = progressBar.value;
     upgradeProgressBar(pauseTime);
   });
 
-  volumeRange.addEventListener("change", (el) => {
+  volumeRange.addEventListener("input", (el) => {
     changeVolume(volumeRange.value);
   });
 
