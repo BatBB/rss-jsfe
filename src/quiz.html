@@ -38,68 +38,14 @@
           <div class="levels-item">Хищные птицы</div>
           <div class="levels-item">Морские птицы</div>
         </section>
-        <section class="main__audioplayer audioplayer">
-          <div class="audioplayer-img"></div>
-          <div class="audioplayer-wrapper">
-            <div class="audioplayer-title">* * * * * *</div>
-            <div class="audioplayer-controls">
-              <button class="audioplayer-play"></button>
-              <div class="audioplayer-progressbar-timer">
-                <input
-                  class="audioplayer-progressbar"
-                  type="range"
-                  min="0"
-                  max=""
-                  value="0"
-                />
-                <div class="audioplayer-timer">
-                  <div class="current">00:00</div>
-                  <div class="duration">00:00</div>
-                </div>
-              </div>
-            </div>
-            <div class="audioplayer-volume">
-              <button class="audioplayer-volume-btn"></button>
-              <input
-                class="audioplayer-volume-range"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-              />
-            </div>
-          </div>
-        </section>
+        <section class="main__audioplayer" id="question-audioplayer"></section>
         <section class="main__answers answers">
           <div class="answers-block" id="answers-block"></div>
           <div class="answers-block">
-            <div class="answers-audioplayer">
-              <div class="audioplayer-img"></div>
-              <div class="audioplayer-wrapper">
-                <div class="audioplayer-title">* * * * * *</div>
-                <div class="audioplayer-subtitle"></div>
-                <div class="audioplayer-controls">
-                  <button class="audioplayer-play"></button>
-                  <input
-                    type="range"
-                    class="audioplayer-progressbar"
-                    min="0"
-                    max=""
-                    value="0"
-                  />
-                </div>
-                <div class="audioplayer-volume">
-                  <button class="audioplayer-volume-btn"></button>
-                  <input
-                    class="audioplayer-volume-range"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                  />
-                </div>
-              </div>
-            </div>
+            <div
+              class="answers-audioplayer audioplayer"
+              id="answers-audioplayer"
+            ></div>
             <div class="descriptions hidden"></div>
           </div>
         </section>
