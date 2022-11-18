@@ -19,7 +19,7 @@
             <li class="nav-item">
               <a href="/index.html" class="nav-link"></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active-nav">
               <a href="/quiz.html" class="nav-link"></a>
             </li>
             <li class="nav-item"><a href="#" class="nav-link"></a></li>
@@ -32,12 +32,15 @@
       <div class="container main__wrapper">
         <section class="main__levels" id="levels"></section>
         <section class="main__audioplayer" id="question-audioplayer"></section>
-        <section class="main__answers answers">
-          <div class="answers-block" id="answers-block"></div>
-          <div class="answers-block">
-            <div class="answers-audioplayer" id="answers-audioplayer"></div>
-            <div class="description" id="description"></div>
+        <section class="main__answers">
+          <div class="answers">
+            <div class="answers-block" id="answers-block"></div>
+            <div class="answers-block">
+              <div class="answers-audioplayer" id="answers-audioplayer"></div>
+              <div class="description" id="description"></div>
+            </div>
           </div>
+          <button class="next-btn" id="next-btn">Next level</button>
         </section>
       </div>
     </main>

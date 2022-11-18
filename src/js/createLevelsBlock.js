@@ -8,6 +8,9 @@ export default function createLevelsBlock(lang) {
   for (let index = 0; index < 6; index++) {
     const div = document.createElement("div");
     div.className = "levels-item";
+    if (!index) {
+      div.classList.add("active-level");
+    }
     div.dataset.level = index;
     div.textContent = language.levels[lang][index];
     levelBlock.append(div);
