@@ -25,6 +25,22 @@ const language = {
     en: ["Home", "Quiz", "Result", "Gallery"],
     ru: ["Начальная страница", "Викторина", "Результат", "Галерея"],
   },
+  score: {
+    en: "Score:",
+    ru: "Набрано баллов:",
+  },
+  congratulation: {
+    en: "Сongratulations!",
+    ru: "Поздравляем!",
+  },
+  resultText: {
+    en: `You scored ${localStorage.getItem("score")} points out of 30`,
+    ru: `Вы набрали ${localStorage.getItem("score")} баллов из 30`,
+  },
+  resultBtn: {
+    en: "Play again",
+    ru: "Сыграть еще раз",
+  },
 };
 
 export default language;

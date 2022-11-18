@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Songbird Quiz</title>
+    <title>Result</title>
   </head>
   <body class="body">
     <header class="header">
@@ -14,15 +14,15 @@
             <h1 class="header__title title">Songbird</h1>
           </a>
         </div>
-        <nav class="header__nav nav">
+        <nav class="header__nav nav" id="nav">
           <ul class="nav-list">
-            <li class="nav-item active-nav">
+            <li class="nav-item">
               <a href="/index.html" class="nav-link"></a>
             </li>
             <li class="nav-item">
               <a href="/quiz.html" class="nav-link"></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active-nav">
               <a href="/result.html" class="nav-link"></a>
             </li>
             <li class="nav-item"><a href="#" class="nav-link"></a></li>
@@ -31,19 +31,11 @@
       </div>
     </header>
     <main class="main">
-      <div class="main__wrapper container">
-        <div class="main__btn">
-          <a href="/quiz.html" class="main__btn-link">Play</a>
-        </div>
-        <div class="main__video">
-          <iframe
-            class="main__videoplayer"
-            src="https://www.youtube.com/embed/bEMRS-UNlw8?&autoplay=1&controls=0"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+      <div class="container main__wrapper">
+        <div class="score">
+          <p class="score-congratulation"></p>
+          <p class="score-text"></p>
+          <a class="score-btn" href="/quiz.html"></a>
         </div>
       </div>
     </main>

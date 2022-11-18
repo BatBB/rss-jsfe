@@ -1,4 +1,5 @@
 import { createAudioBlock } from "./createAudioPlayer";
+import translate from "./translate";
 
 export default function createListAnswers(birds) {
   const answersList = document.createElement("ul");
@@ -13,6 +14,9 @@ export default function createListAnswers(birds) {
   listAnswersBlock.innerHTML = "";
   let isRightAnswer = false;
 
+  let score = +localStorage.getItem("score");
+  let levelScore = 5;
+
   birds.forEach((bird) => {
     const answersItem = document.createElement("li");
     answersItem.className = "answers-item";
@@ -23,14 +27,23 @@ export default function createListAnswers(birds) {
       const rightBirdId = localStorage.getItem("rightBirdId");
 
       if (id !== rightBirdId) {
-        if (!isRightAnswer) el.target.classList.add("wrong");
+        if (!isRightAnswer) {
+          el.target.classList.add("wrong");
+          levelScore--;
+        }
       } else {
-        el.target.classList.add("right");
+        if (!isRightAnswer) {
+          el.target.classList.add("right");
+          nextBtn.classList.add("active-next-btn");
+          let title = `${bird.name} (${bird.species})`;
+          audioTitle.innerText = title;
+          playerImg.style.backgroundImage = `url(${bird.image})`;
+          console.log(levelScore);
+          score += levelScore;
+          localStorage.setItem("score", score);
+          translate.score();
+        }
         isRightAnswer = true;
-        nextBtn.classList.add("active-next-btn");
-        let title = `${bird.name} (${bird.species})`;
-        audioTitle.innerText = title;
-        playerImg.style.backgroundImage = `url(${bird.image})`;
       }
 
       const player = createAudioBlock(bird, true);

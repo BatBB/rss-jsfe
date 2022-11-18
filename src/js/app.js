@@ -4,18 +4,18 @@ import createListAnswers from "./createListAnswers";
 import { createAudioBlock } from "./createAudioPlayer";
 import createLevelsBlock from "./createLevelsBlock";
 import language from "./language";
-import translateNav from "./translateNav";
+import translate from "./translate";
 
 const getRandomNum = (length = 6) => Math.floor(Math.random() * length) + 1;
 
 let lang = localStorage.getItem("lang") || "en";
-localStorage.setItem("lang", lang);
 
 let level = 0;
+localStorage.setItem("score", 0);
 
 const nextBtn = document.getElementById("next-btn");
 
-function init() {
+function initQuiz() {
   let rightBirdId = getRandomNum();
   let birds = shuffleArr(birdsData[lang][level]);
   let rightBird = birds.find((bird) => bird.id === rightBirdId);
@@ -24,7 +24,8 @@ function init() {
   localStorage.setItem("rightBirdId", rightBirdId);
   localStorage.setItem("rightBird", JSON.stringify(rightBird));
 
-  translateNav(lang);
+  translate.nav();
+  translate.score();
 
   //создание плеера для вопроса
   const mainAudioBlock = createAudioBlock(rightBird);
@@ -39,7 +40,7 @@ function init() {
 //создание блока с наименованием уровней
 createLevelsBlock(lang);
 
-init();
+initQuiz();
 
 const description = document.getElementById("description");
 description.innerText = language.description[lang];
@@ -52,7 +53,7 @@ nextBtn.addEventListener("click", (el) => {
     level++;
 
     if (level < 6) {
-      init();
+      initQuiz();
       document
         .querySelector(`[data-level='${level}']`)
         .classList.add("active-level");
@@ -60,6 +61,6 @@ nextBtn.addEventListener("click", (el) => {
     if (level === 5) {
       el.target.innerText = "Result";
     }
-    if (level > 5) window.location = "./index.html";
+    if (level > 5) window.location = "./result.html";
   }
 });
