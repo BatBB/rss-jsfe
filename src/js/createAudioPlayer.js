@@ -72,96 +72,96 @@ export function createAudioBlock(bird, answerIsRight = false) {
   audioplayer.append(playerWrapper);
 
   //логика плеера
-  playBtn.addEventListener("click", (el) => {
-    setPlayPause();
-  });
+  // playBtn.addEventListener("click", (el) => {
+  //   setPlayPause();
+  // });
 
-  volumeBtn.addEventListener("click", (el) => {
-    clickVolume();
-  });
+  // volumeBtn.addEventListener("click", (el) => {
+  //   clickVolume();
+  // });
 
-  progressBar.addEventListener("input", (el) => {
-    pauseTime = progressBar.value;
-    upgradeProgressBar(pauseTime);
-  });
+  // progressBar.addEventListener("input", (el) => {
+  //   pauseTime = progressBar.value;
+  //   upgradeProgressBar(pauseTime);
+  // });
 
-  volumeRange.addEventListener("input", (el) => {
-    changeVolume(volumeRange.value);
-  });
+  // volumeRange.addEventListener("input", (el) => {
+  //   changeVolume(volumeRange.value);
+  // });
 
-  const audio = new Audio();
+  // const audio = new Audio();
 
-  let isPlay = false;
-  let pauseTime = 0;
-  let volumeValueLast = 0.5;
+  // let isPlay = false;
+  // let pauseTime = 0;
+  // let volumeValueLast = 0.5;
 
-  function playAudio() {
-    audio.src = bird.audio;
-    audio.currentTime = pauseTime;
+  // function playAudio() {
+  //   audio.src = bird.audio;
+  //   audio.currentTime = pauseTime;
 
-    audio.play();
-    audio.addEventListener("loadeddata", (el) => {
-      if (audio.duration) duration.textContent = formatTime(audio.duration);
-    });
-    isPlay = true;
-    playBtn.classList.add("pause");
-    audio.addEventListener("timeupdate", (el) => {
-      upgradeProgressBar();
-    });
-  }
+  //   audio.play();
+  //   audio.addEventListener("loadeddata", (el) => {
+  //     if (audio.duration) duration.textContent = formatTime(audio.duration);
+  //   });
+  //   isPlay = true;
+  //   playBtn.classList.add("pause");
+  //   audio.addEventListener("timeupdate", (el) => {
+  //     upgradeProgressBar();
+  //   });
+  // }
 
-  function setPlayPause() {
-    if (!isPlay) {
-      playAudio();
-    } else {
-      audio.pause();
-      pauseTime = audio.currentTime;
-      isPlay = false;
-      playBtn.classList.remove("pause");
-    }
-  }
+  // function setPlayPause() {
+  //   if (!isPlay) {
+  //     playAudio();
+  //   } else {
+  //     audio.pause();
+  //     pauseTime = audio.currentTime;
+  //     isPlay = false;
+  //     playBtn.classList.remove("pause");
+  //   }
+  // }
 
-  function formatTime(time) {
-    const min = Math.floor(time / 60)
-      .toString()
-      .padStart(2, "0");
-    const sec = Math.floor(time % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${min}:${sec}`;
-  }
+  // function formatTime(time) {
+  //   const min = Math.floor(time / 60)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   const sec = Math.floor(time % 60)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   return `${min}:${sec}`;
+  // }
 
-  function upgradeProgressBar(value) {
-    if (audio.duration) progressBar.max = Math.floor(audio.duration);
+  // function upgradeProgressBar(value) {
+  //   if (audio.duration) progressBar.max = Math.floor(audio.duration);
 
-    if (value) audio.currentTime = value;
+  //   if (value) audio.currentTime = value;
 
-    current.textContent = formatTime(audio.currentTime);
-    progressBar.value = audio.currentTime;
-  }
+  //   current.textContent = formatTime(audio.currentTime);
+  //   progressBar.value = audio.currentTime;
+  // }
 
-  function clickVolume() {
-    if (volumeBtn.className.includes("mute")) {
-      audio.volume = volumeValueLast;
-      volumeBtn.classList.remove("mute");
-      volumeRange.value = volumeValueLast;
-    } else {
-      volumeValueLast = audio.volume;
-      audio.volume = 0;
-      volumeRange.value = 0;
-      volumeBtn.classList.add("mute");
-    }
-  }
+  // function clickVolume() {
+  //   if (volumeBtn.className.includes("mute")) {
+  //     audio.volume = volumeValueLast;
+  //     volumeBtn.classList.remove("mute");
+  //     volumeRange.value = volumeValueLast;
+  //   } else {
+  //     volumeValueLast = audio.volume;
+  //     audio.volume = 0;
+  //     volumeRange.value = 0;
+  //     volumeBtn.classList.add("mute");
+  //   }
+  // }
 
-  function changeVolume(value) {
-    audio.volume = value;
+  // function changeVolume(value) {
+  //   audio.volume = value;
 
-    if (+value) {
-      volumeBtn.classList.remove("mute");
-    } else {
-      volumeBtn.classList.add("mute");
-    }
-  }
+  //   if (+value) {
+  //     volumeBtn.classList.remove("mute");
+  //   } else {
+  //     volumeBtn.classList.add("mute");
+  //   }
+  // }
 
   return audioplayer;
 }

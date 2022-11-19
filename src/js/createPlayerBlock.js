@@ -1,16 +1,15 @@
-export function createPlayerBlock(bird) {
+export function createPlayerBlock(bird = null) {
   //создание элементов плеера
   const playerImg = document.createElement("div");
   playerImg.className = "audioplayer-img";
-  playerImg.style.backgroundImage = `url(${bird.image})`;
 
   const playerWrapper = document.createElement("div");
   playerWrapper.className = "audioplayer-wrapper";
 
   const audioTitle = document.createElement("div");
   audioTitle.className = "audioplayer-title";
-  let title = `${bird.name} (${bird.species})`;
-  audioTitle.innerText = title;
+  audioTitle.innerText = "* * * * * * *";
+
   const playerControls = document.createElement("div");
   playerControls.className = "audioplayer-controls";
 
@@ -70,6 +69,12 @@ export function createPlayerBlock(bird) {
 
   audioplayer.append(playerImg);
   audioplayer.append(playerWrapper);
+
+  if (bird) {
+    playerImg.style.backgroundImage = `url(${bird.image})`;
+    let title = `${bird.name} (${bird.species})`;
+    audioTitle.innerText = title;
+  }
 
   return audioplayer;
 }
