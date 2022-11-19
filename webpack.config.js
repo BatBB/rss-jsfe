@@ -105,6 +105,10 @@ module.exports = {
         type: "asset/resource",
       },
       {
+        test: /\.(mp3|wav|ogg|mp4)$/i,
+        type: "asset/resource",
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {

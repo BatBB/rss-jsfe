@@ -1,4 +1,3 @@
-import { createAudioBlock } from "./createAudioPlayer";
 import translate from "./translate";
 
 export default function createListAnswers(birds) {
@@ -13,7 +12,6 @@ export default function createListAnswers(birds) {
     answersItem.className = "answers-item";
     answersItem.innerText = bird.name;
     answersItem.dataset.id = bird.id;
-    console.table(bird.id, bird.name);
     answersList.append(answersItem);
   });
 

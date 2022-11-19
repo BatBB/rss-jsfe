@@ -67,7 +67,7 @@
     border-radius: 15px;
     background-size: cover;
     background-position: center;
-    background-image: url('assets/images/bird.jpg');
+    background-image: url("assets/images/bird.jpg");
   }
 
   &-wrapper {
@@ -133,7 +133,7 @@
     &-btn {
       width: 40px;
       height: 40px;
-      background-image: url(assets/images/volume-on.svg);
+      background-image: url("assets/images/volume-on.svg");
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat;
@@ -237,7 +237,7 @@
 }
 
 .mute {
-  background-image: url(assets/images/volume-off.svg);
+  background-image: url("assets/images/volume-off.svg");
 }
 
 .right {

@@ -4,7 +4,7 @@ import createListAnswers from "./createListAnswers";
 import createLevelsBlock from "./createLevelsBlock";
 import language from "./language";
 import translate from "./translate";
-import { createPlayerBlock } from "./createPlayerBlock";
+import audioplayer from "./audioplayer";
 
 const getRandomNum = (length = 6) => Math.floor(Math.random() * length) + 1;
 
@@ -23,8 +23,35 @@ let levelScore;
 //создание блока с наименованием уровней
 createLevelsBlock(lang);
 
+const questionAudioBlock = document.getElementById("question-audioplayer");
+
+const secondAudio = new audioplayer();
+const secondAudioBlock = secondAudio.createPlayerBlock();
+answerAudioBlock.append(secondAudioBlock);
+
+const mainAudio = new audioplayer();
+const mainAudioBlock = mainAudio.createPlayerBlock();
+questionAudioBlock.append(mainAudioBlock);
+
 initQuiz();
-answerAudioBlock.append(createPlayerBlock());
+
+document.body.addEventListener("canplaythrough", (el) => {
+  console.log(el);
+});
+
+export default function stopAudio() {
+  if (mainAudio.isPlay) {
+    mainAudio.setPlayPause();
+  }
+  mainAudio.audio.currentTime = 0;
+  mainAudio.pauseTime = 0;
+
+  if (secondAudio.isPlay) {
+    secondAudio.setPlayPause();
+  }
+  secondAudio.audio.currentTime = 0;
+  secondAudio.pauseTime = 0;
+}
 
 function initQuiz() {
   let rightBirdId = getRandomNum();
@@ -32,6 +59,8 @@ function initQuiz() {
   let rightBird = birds.find((bird) => bird.id === rightBirdId);
   isRightAnswer = false;
   levelScore = 5;
+
+  mainAudio.audioSrc = rightBird.audio;
 
   nextBtn.classList.remove("active-next-btn");
   localStorage.setItem("rightBirdId", rightBirdId);
@@ -42,12 +71,6 @@ function initQuiz() {
 
   answerAudioBlock.classList.add("hidden");
   description.innerText = language.description[lang];
-
-  const mainAudioBlock = createPlayerBlock();
-
-  const questionBlock = document.getElementById("question-audioplayer");
-  questionBlock.innerHTML = "";
-  questionBlock.append(mainAudioBlock);
 
   //создание списка вариантов ответа
   createListAnswers(birds);
@@ -69,6 +92,13 @@ function clickAnswer(el, bird) {
   answerAudioBlock.classList.remove("hidden");
   const audioTitle = answerAudioBlock.querySelector(".audioplayer-title");
   const playerImg = answerAudioBlock.querySelector(".audioplayer-img");
+
+  if (secondAudio.isPlay) {
+    secondAudio.setPlayPause();
+  }
+  secondAudio.audio.currentTime = 0;
+  secondAudio.pauseTime = 0;
+  secondAudio.audioSrc = bird.audio;
   playerImg.style.backgroundImage = `url(${bird.image})`;
   let title = `${bird.name} (${bird.species})`;
   audioTitle.innerText = title;
@@ -103,6 +133,8 @@ nextBtn.addEventListener("click", (el) => {
     document
       .querySelector(`[data-level='${level}']`)
       .classList.remove("active-level");
+
+    stopAudio();
 
     level++;
 
