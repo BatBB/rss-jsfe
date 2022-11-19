@@ -1,4 +1,4 @@
-import stopAudio from "./app";
+// import stopAudio from "./app";
 
 export default class audioplayer {
   audio = new Audio();
@@ -81,7 +81,7 @@ export default class audioplayer {
     this.audioplayer.append(this.playerWrapper);
 
     this.playBtn.addEventListener("click", (el) => {
-      stopAudio();
+      // stopAudio();
       this.setPlayPause();
     });
 

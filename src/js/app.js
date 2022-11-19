@@ -5,6 +5,8 @@ import createLevelsBlock from "./createLevelsBlock";
 import language from "./language";
 import translate from "./translate";
 import audioplayer from "./audioplayer";
+import "../assets/sounds/win.mp3";
+import "../assets/sounds/error.mp3";
 
 const getRandomNum = (length = 6) => Math.floor(Math.random() * length) + 1;
 
@@ -85,6 +87,12 @@ function initQuiz() {
   });
 }
 
+function clickSound(src) {
+  const audio = new Audio(src);
+  audio.play();
+  audio.volume = 0.5;
+}
+
 function clickAnswer(el, bird) {
   const nextBtn = document.getElementById("next-btn");
   const description = document.getElementById("description");
@@ -117,9 +125,18 @@ function clickAnswer(el, bird) {
       localStorage.setItem("score", score);
       translate.score();
       isRightAnswer = true;
+
+      clickSound("./assets/win.mp3");
+
+      if (mainAudio.isPlay) {
+        mainAudio.setPlayPause();
+      }
+      mainAudio.audio.currentTime = 0;
+      mainAudio.pauseTime = 0;
     } else {
       if (!el.target.classList.contains("wrong")) {
         el.target.classList.add("wrong");
+        clickSound("./assets/error.mp3");
         levelScore--;
       }
     }
