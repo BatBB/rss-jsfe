@@ -7,7 +7,7 @@ const devMode = mode === "development";
 const target = devMode ? "web" : "browserslist";
 const devtool = devMode ? "source-map" : undefined;
 
-const pages = ["index", "quiz", "result"];
+const pages = ["index", "quiz", "result", "gallery"];
 
 module.exports = {
   mode,
@@ -34,9 +34,6 @@ module.exports = {
     },
   },
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, "src", "index.html"),
-    // }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
