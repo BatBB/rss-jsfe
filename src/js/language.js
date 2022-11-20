@@ -41,6 +41,18 @@ const language = {
     en: "Play again",
     ru: "Сыграть еще раз",
   },
+  play: {
+    en: "Play",
+    ru: "Играть",
+  },
+  nextLevel: {
+    en: "Next level",
+    ru: "Следующий уровень",
+  },
+  result: {
+    en: "Result",
+    ru: "Результат",
+  },
 };
 
 export default language;

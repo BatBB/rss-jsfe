@@ -16,6 +16,8 @@ let level = 0;
 localStorage.setItem("score", 0);
 
 const nextBtn = document.getElementById("next-btn");
+nextBtn.textContent = language.nextLevel[lang];
+
 const answerAudioBlock = document.getElementById("answers-audioplayer");
 const description = document.getElementById("description");
 
@@ -162,7 +164,7 @@ nextBtn.addEventListener("click", (el) => {
         .classList.add("active-level");
     }
     if (level === 5) {
-      el.target.innerText = "Result";
+      el.target.innerText = language.result[lang];
     }
     if (level > 5) window.location = "./result.html";
   }
