@@ -5,6 +5,7 @@ import "./assets/images/ru.png";
 import changeLang from "./js/changeLang";
 import translate from "./js/translate";
 import language from "./js/language";
+import "./js/crossCheck";
 
 let lang = localStorage.getItem("lang") || "en";
 localStorage.setItem("lang", lang);
