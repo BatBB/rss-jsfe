@@ -102,6 +102,9 @@ function clickAnswer(el, bird) {
   answerAudioBlock.classList.remove("hidden");
   const audioTitle = answerAudioBlock.querySelector(".audioplayer-title");
   const playerImg = answerAudioBlock.querySelector(".audioplayer-img");
+  const playerImgMain = mainAudioBlock.querySelector(".audioplayer-img");
+  const audioTitleMain= mainAudioBlock.querySelector(".audioplayer-title");
+
 
   if (secondAudio.isPlay) {
     secondAudio.setPlayPause();
@@ -127,7 +130,9 @@ function clickAnswer(el, bird) {
       localStorage.setItem("score", score);
       translate.score();
       isRightAnswer = true;
-
+      playerImgMain.style.backgroundImage = `url(${bird.image})`;
+      let title = `${bird.name} (${bird.species})`;
+      audioTitleMain.innerText = title;
       clickSound("./assets/win.mp3");
 
       if (mainAudio.isPlay) {
@@ -148,6 +153,9 @@ function clickAnswer(el, bird) {
 }
 
 nextBtn.addEventListener("click", (el) => {
+  const playerImgMain = mainAudioBlock.querySelector(".audioplayer-img");
+  const audioTitleMain = mainAudioBlock.querySelector('.audioplayer-title');
+
   if (el.target.className.includes("active-next-btn")) {
     document
       .querySelector(`[data-level='${level}']`)
@@ -159,6 +167,8 @@ nextBtn.addEventListener("click", (el) => {
 
     if (level < 6) {
       initQuiz();
+      playerImgMain.style.backgroundImage = `url(./assets/bird.jpg)`;
+      audioTitleMain.innerText = '* * * * * *';
       document
         .querySelector(`[data-level='${level}']`)
         .classList.add("active-level");

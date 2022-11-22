@@ -95,6 +95,7 @@
   &-play {
     width: 40px;
     height: 40px;
+    background-color: inherit;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -133,6 +134,7 @@
     &-btn {
       width: 40px;
       height: 40px;
+      background-color: inherit;
       background-image: url("./assets/images/volume-on.svg");
       background-position: center;
       background-size: contain;
