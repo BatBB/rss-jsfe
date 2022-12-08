@@ -1,18 +1,9 @@
 import "./news.css";
 import validHTMLElement from "../validHTMLElement";
-
-interface NewsData {
-  urlToImage: string;
-  author: string;
-  publishedAt: string;
-  title: string;
-  description: string;
-  url: string;
-  source: {name: string}
-}
+import INewsData from "components/interfaces/INewsData";
 
 class News {
-  draw(data: NewsData[]) {
+  draw(data: INewsData[]) {
     const news =
       data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 

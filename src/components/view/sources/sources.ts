@@ -1,10 +1,6 @@
 import "./sources.css";
 import validHTMLElement from "../validHTMLElement";
-
-interface ISources {
-  name: string;
-  id: string;
-}
+import ISources from "components/interfaces/ISources";
 
 class Sources {
   draw(data: ISources[]) {
