@@ -1,4 +1,5 @@
 import "./news.css";
+import validHTMLElement from "../validHTMLElement";
 
 interface NewsData {
   urlToImage: string;
@@ -8,11 +9,6 @@ interface NewsData {
   description: string;
   url: string;
   source: {name: string}
-}
-
-function validHTMLElement(element: HTMLElement | null): HTMLElement  {
-  if (!element) throw Error('Is not HTMLElement');
-  return element;
 }
 
 class News {
