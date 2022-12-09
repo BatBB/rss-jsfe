@@ -2,7 +2,7 @@ import { IDrawNews, IDrawSources } from "components/interfaces/interfacesAppView
 import News from "./news/news";
 import Sources from "./sources/sources";
 
-export class AppView {
+class AppView {
   constructor(
     private news: News = new News(),
     private sources: Sources = new Sources()

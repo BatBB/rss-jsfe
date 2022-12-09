@@ -1,3 +1,7 @@
+const enum ErrorStatus {
+  err401 = 401,
+  err404 = 404
+}
 
 class Loader {
   constructor(
@@ -11,12 +15,12 @@ class Loader {
       console.error("No callback for GET response");
     }
   ) {
-    this.load<Type>("GET", endpoint, callback, options);
+    this.load("GET", endpoint, callback, options);
   }
 
   errorHandler(res: Response) {
     if (!res.ok) {
-      if (res.status === 401 || res.status === 404)
+      if (res.status === ErrorStatus.err401 || res.status === ErrorStatus.err401)
         console.log(
           `Sorry, but there is ${res.status} error: ${res.statusText}`
         );

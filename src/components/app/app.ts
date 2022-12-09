@@ -1,7 +1,7 @@
 import { IDrawNews, IDrawSources } from "../interfaces/interfacesAppView";
 import validHTMLElement from "../view/validHTMLElement";
 import AppController from "../controller/controller";
-import { AppView } from "../view/appView";
+import AppView from "../view/appView";
 
 class App {
   constructor(
