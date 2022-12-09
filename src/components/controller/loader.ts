@@ -2,7 +2,7 @@
 class Loader {
   constructor(
     private baseLink: string,
-    private options: { sources?: string },
+    private options: { apiKey: string },
   ) {}
 
   getResp(
