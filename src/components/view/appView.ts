@@ -1,14 +1,6 @@
-import NewsData from "components/interfaces/INewsData";
-import ISources from "components/interfaces/ISources";
+import { IDrawNews, IDrawSources } from "components/interfaces/interfacesAppView";
 import News from "./news/news";
 import Sources from "./sources/sources";
-
-interface IDrawNews {
-  articles: NewsData[];
-}
-interface IDrawSources{
-  sources: ISources[];
-}
 
 export class AppView {
   constructor(
