@@ -8,14 +8,26 @@ class App {
     private controller = new AppController(),
     private view = new AppView()
   ) {}
-
+  
   start() {
-    validHTMLElement(document
-      .querySelector(".sources"))
+
+    this.view.drawAlphabet();
+
+    validHTMLElement(document.querySelector(".alphabet"))
+      .addEventListener("click", (e: Event) => {
+        const target = <HTMLElement>e.target;
+
+        if (target.classList.contains('letter')) {
+          const letter = <string>target.textContent?.trim();
+          this.controller.getSources((data: IDrawSources) => this.view.drawSources(data, letter));
+        }
+      }
+      );
+
+    validHTMLElement(document.querySelector(".sources"))
       .addEventListener("click", (e) =>
         this.controller.getNews(e, (data: IDrawNews) => this.view.drawNews(data))
       );
-    this.controller.getSources((data: IDrawSources) => this.view.drawSources(data));
   }
 }
 

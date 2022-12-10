@@ -18,6 +18,8 @@ class Sources {
       fragment.append(sourceClone);
     });
 
+    validHTMLElement(document.querySelector(".news")).innerHTML = "";
+    validHTMLElement(document.querySelector(".sources")).innerHTML = "";
     validHTMLElement(document.querySelector(".sources")).append(fragment);
   }
 }
