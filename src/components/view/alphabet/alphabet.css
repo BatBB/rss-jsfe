@@ -1,11 +1,9 @@
 .alphabet {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  max-height: 60px;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 10px;
-  /* overflow: auto; */
   align-items: center;
   font: 300 1em "Fira Sans", sans-serif;
 }
