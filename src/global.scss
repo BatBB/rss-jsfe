@@ -1,0 +1,17 @@
+@import url('/src/libs/nomalize.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn {
+  padding: 2px 10px;
+  cursor: pointer;
+  background-color: yellow;
+
+  &:hover {
+    background-color: greenyellow;
+  }
+}

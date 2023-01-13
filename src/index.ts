@@ -1,1 +1,5 @@
-console.log('asd');
+import App from './App/App';
+
+const app = new App();
+
+app.run();
