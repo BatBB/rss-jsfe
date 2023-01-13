@@ -1,0 +1,17 @@
+.garage {
+  &__make {
+    margin-bottom: 20px;
+
+    &>div {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__track {
+
+    &-cars,
+    &-page {
+      margin-bottom: 20px;
+    }
+  }
+}
