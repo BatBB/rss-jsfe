@@ -6,6 +6,8 @@ const urlGarage = `${urlBase}/garage`;
 export async function getCars() {
   const response = await fetch(`${urlGarage}`);
   const cars: ICar[] = await response.json();
+  // const count = response.headers.get('X-Total-Count');
+  // console.log(count);
   return cars;
 }
 
