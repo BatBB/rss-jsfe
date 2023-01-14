@@ -15,3 +15,36 @@
     }
   }
 }
+
+.edit-btn {
+  margin-bottom: 10px;
+}
+
+.way {
+  height: 40px;
+  border-bottom: 2px dashed black;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 5px;
+  position: relative;
+}
+
+.car-image {
+  position: relative;
+  width: 50px;
+
+  &-svg {
+    height: 45px;
+    width: 100%;
+    position: absolute;
+  }
+}
+
+.finish-image {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 60px;
+  bottom: 0px;
+}
