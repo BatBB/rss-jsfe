@@ -21,9 +21,9 @@ export default class GaragePage extends Component {
         <button class="btn btn-update">UPDATE</button>
       </div>
       <div class="garage__make-buttons">
-        <button>RACE</button>
-        <button>RESET</button>
-        <button>GENERATE CARS</button>
+        <button class="btn btn-race">RACE</button>
+        <button class="btn btn-reset">RESET</button>
+        <button class="btn btn-generate">GENERATE CARS</button>
       </div>
     </div>
     `;

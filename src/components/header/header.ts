@@ -2,10 +2,12 @@ import createElement from '../../utils/createElement';
 import Component from '../component';
 import './header.scss';
 
-const enum textBtn {
-  textGarage = 'To garage',
-  textWinner = 'To winners',
-}
+const textBtn = {
+  garage: 'To garage',
+  winners: 'To winners',
+};
+
+const buttonsHeader: ['garage', 'winners'] = ['garage', 'winners'];
 
 export default class Header extends Component {
   constructor(tagName = 'header', className = 'header') {
@@ -13,12 +15,13 @@ export default class Header extends Component {
   }
 
   private renderHeader() {
-    const btnGarage = createElement('button', 'header__btn btn');
-    btnGarage.textContent = textBtn.textGarage;
-    const btnWinner = createElement('button', 'header__btn btn');
-    btnWinner.textContent = textBtn.textWinner;
-    this.container.append(btnGarage);
-    this.container.append(btnWinner);
+    buttonsHeader.forEach((btnHeader) => {
+      const btn = <HTMLButtonElement>(
+        createElement('button', `header__btn btn btn-${btnHeader}`)
+      );
+      btn.textContent = textBtn[btnHeader];
+      this.container.append(btn);
+    });
   }
 
   render(): HTMLElement {
