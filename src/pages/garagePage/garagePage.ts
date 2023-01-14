@@ -1,7 +1,5 @@
-import { getCars, getCar } from '../../API/api';
 import Component from '../../components/component';
-import { ICar } from '../../interfaces/interfaces';
-import { svgImages } from '../../libs/svgImages';
+import renderCars from '../../components/renders/renderCars';
 import createElement from '../../utils/createElement';
 import './garagePage.scss';
 
@@ -14,13 +12,13 @@ export default class GaragePage extends Component {
     const containerMakeTemplate = `
     <div class="garage__make">
       <div class="garage__make-create">
-        <input type="text" class="input-text input-create" />
-        <input type="color" class="input-color input-create" />
+        <input type="text" class="input-text-create input-create" />
+        <input type="color" class="input-color-create input-create" />
         <button class="btn btn-create">CREATE</button>
       </div>
       <div class="garage__make-update">
-        <input type="text" class="input-text input-update" />
-        <input type="color" class="input-color input-update" />
+        <input type="text" class="input-text-update input-update" />
+        <input type="color" class="input-color-update input-update" />
         <button class="btn btn-update">UPDATE</button>
       </div>
       <div class="garage__make-buttons">
@@ -47,43 +45,10 @@ export default class GaragePage extends Component {
     return element;
   }
 
-  async renderCar(car: ICar) {
-    const carContainer = createElement('div', 'car-container');
-    const template = `<div class="track-car">
-      <div class="edit-btn">
-        <button class="btn-car-select btn">SELECT</button>
-        <button class="btn-car-remove btn">REMOVE</button>
-        <span class="car-name">${car.name}</span>
-      </div>
-      <div class="way">
-        <button class="btn-car-start btn">A</button>
-        <button class="btn-car-stop btn">B</button>
-        <div class="car-image">${svgImages.car}</div>
-        <div class="finish-image">${svgImages.flag}</div>
-      </div>
-    </div>`;
-
-    carContainer.innerHTML = template;
-    const carSvg = <SVGAElement>carContainer.querySelector('.car-image-svg');
-    carSvg.style.fill = car.color;
-    return carContainer;
-  }
-
-  async renderCars() {
-    const cars = await getCars();
-    console.log(cars);
-    const track =
-      document.querySelector('.garage__track-container') ||
-      createElement('div', '.garage__track-container');
-    cars.forEach(async (car) => {
-      track.append(await this.renderCar(car));
-    });
-  }
-
   render(): HTMLElement {
     this.container.append(this.renderContainerMake());
     this.container.append(this.renderTrack());
-    this.renderCars();
+    renderCars();
     return this.container;
   }
 }
