@@ -11,7 +11,7 @@ export async function getCars() {
 
 export async function getCar(id: number) {
   const response = await fetch(`${urlGarage}/${id}`);
-  const car = await response.json();
+  const car: ICar = await response.json();
   return car;
 }
 
@@ -26,9 +26,20 @@ export async function createCar(car: ICar) {
   return newCar;
 }
 
-export async function deleteCar(id: number | string) {
+export async function deleteCar(id: string) {
   const options: IOptionsFetch = {
     method: 'DELETE',
   };
   await fetch(`${urlGarage}/${id}`, options);
+}
+
+export async function updateCar(car: ICar) {
+  const options: IOptionsFetch = {
+    method: 'PUT',
+    body: JSON.stringify(car),
+    headers: { 'Content-Type': 'application/json' },
+  };
+  const response = await fetch(`${urlGarage}/${car.id}`, options);
+  const updCar: ICar = await response.json();
+  return updCar;
 }

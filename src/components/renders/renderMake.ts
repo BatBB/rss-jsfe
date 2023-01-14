@@ -11,7 +11,7 @@ export default function renderContainerMake() {
     <div class="garage__make-update">
       <input type="text" class="input-text-update input-update" />
       <input type="color" class="input-color-update input-update" />
-      <button class="btn btn-update">UPDATE</button>
+      <button class="btn btn-update" disabled>UPDATE</button>
     </div>
     <div class="garage__make-buttons">
       <button class="btn btn-race">RACE</button>
