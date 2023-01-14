@@ -17,6 +17,6 @@ type Headers = {
 
 export interface IOptionsFetch {
   method: Method;
-  body: string;
-  headers: Headers;
+  body?: string;
+  headers?: Headers;
 }

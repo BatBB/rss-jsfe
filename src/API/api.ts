@@ -15,13 +15,20 @@ export async function getCar(id: number) {
   return car;
 }
 
-export async function createCar(car: ICar): Promise<ICar> {
+export async function createCar(car: ICar) {
   const options: IOptionsFetch = {
     method: 'POST',
     body: JSON.stringify(car),
     headers: { 'Content-Type': 'application/json' },
   };
   const response = await fetch(`${urlGarage}`, options);
-  const newCar = await response.json();
+  const newCar: ICar = await response.json();
   return newCar;
+}
+
+export async function deleteCar(id: number | string) {
+  const options: IOptionsFetch = {
+    method: 'DELETE',
+  };
+  await fetch(`${urlGarage}/${id}`, options);
 }

@@ -1,19 +1,11 @@
-.garage {
-  &__make {
-    margin-bottom: 20px;
-
-    &>div {
-      margin-bottom: 10px;
-    }
-  }
-
-  &__track {
-
-    &-cars,
-    &-page {
-      margin-bottom: 20px;
-    }
-  }
+.garage__make {
+  margin-bottom: 20px;
+}
+.garage__make > div {
+  margin-bottom: 10px;
+}
+.garage__track-cars, .garage__track-page {
+  margin-bottom: 20px;
 }
 
 .edit-btn {
@@ -26,7 +18,8 @@
   margin-bottom: 10px;
   display: flex;
   align-items: flex-start;
-  column-gap: 5px;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
   position: relative;
 }
 
@@ -37,12 +30,11 @@
 .car-image {
   position: relative;
   width: 50px;
-
-  &-svg {
-    height: 45px;
-    width: 100%;
-    position: absolute;
-  }
+}
+.car-image-svg {
+  height: 45px;
+  width: 100%;
+  position: absolute;
 }
 
 .finish-image {
@@ -51,4 +43,4 @@
   position: absolute;
   right: 60px;
   bottom: 0px;
-}
+}/*# sourceMappingURL=garagePage.css.map */
