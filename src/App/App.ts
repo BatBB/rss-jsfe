@@ -5,6 +5,7 @@ import WinnersPage from '../pages/winnersPage/winnersPage';
 import createElement from '../utils/createElement';
 import addEventListenersClick from '../utils/addEventListeners';
 import { updateCarsCount } from '../components/renders/renderTrack';
+import { updatePagination } from '../components/renders/renderPagination';
 
 export default class App {
   private container: HTMLElement;
@@ -27,6 +28,8 @@ export default class App {
         main.append(winnersPage.render());
       }
     }
+    updateCarsCount();
+    updatePagination();
   }
 
   run() {

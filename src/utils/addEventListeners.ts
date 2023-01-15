@@ -1,5 +1,6 @@
 import { createCar, deleteCar, getCar, getCars, updateCar } from '../API/api';
 import App from '../App/App';
+import Header from '../components/header/header';
 import renderCars from '../components/renders/renderCars';
 import { updatePagination } from '../components/renders/renderPagination';
 import {
@@ -14,16 +15,17 @@ export default function addEventListenersClick() {
     const target = <HTMLButtonElement>e.target;
 
     const pageText = document.querySelector(`.garage__track-page-number`);
-    console.log(pageText);
 
     pageNum = Number(pageText?.textContent);
 
     if (target.classList.contains('btn-garage')) {
       App.renderMain('garagePage');
+      Header.updateBtnHeader();
     }
 
     if (target.classList.contains('btn-winners')) {
       App.renderMain('winnersPage');
+      Header.updateBtnHeader();
     }
 
     if (target.classList.contains('btn-create')) {
