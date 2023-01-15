@@ -52,3 +52,10 @@
   right: 60px;
   bottom: 0px;
 }
+
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  column-gap: 30px;
+}

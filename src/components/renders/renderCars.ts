@@ -3,7 +3,9 @@ import createElement from '../../utils/createElement';
 import renderCar from './renderCar';
 
 export default async function renderCars() {
-  const cars = await getCars();
+  const pageText = document.querySelector(`.garage__track-page-number`);
+  const page = Number(pageText?.textContent) || 1;
+  const cars = (await getCars(page)).cars;
   const track =
     document.querySelector('.garage__track-container') ||
     createElement('div', '.garage__track-container');

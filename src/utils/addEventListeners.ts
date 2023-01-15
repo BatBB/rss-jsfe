@@ -1,12 +1,23 @@
-import { createCar, deleteCar, getCar, updateCar } from '../API/api';
+import { createCar, deleteCar, getCar, getCars, updateCar } from '../API/api';
 import App from '../App/App';
 import renderCars from '../components/renders/renderCars';
-import { updateCarsCount } from '../components/renders/renderTrack';
+import { updatePagination } from '../components/renders/renderPagination';
+import {
+  updateCarsCount,
+  updatePageNumber,
+} from '../components/renders/renderTrack';
 import { randomColor, randomName } from './randomize';
 
 export default function addEventListenersClick() {
+  let pageNum = 1;
   document.addEventListener('click', async (e) => {
     const target = <HTMLButtonElement>e.target;
+
+    const pageText = document.querySelector(`.garage__track-page-number`);
+    console.log(pageText);
+
+    pageNum = Number(pageText?.textContent);
+
     if (target.classList.contains('btn-garage')) {
       App.renderMain('garagePage');
     }
@@ -96,6 +107,28 @@ export default function addEventListenersClick() {
       await deleteCar(target.value);
       updateCarsCount();
       await renderCars();
+    }
+
+    if (target.classList.contains('btn-pagination')) {
+      const countPages = Math.ceil(Number((await getCars()).count) / 7);
+      console.log('target', target);
+
+      if (target.classList.contains('btn-pagination-prev')) {
+        console.log('prev');
+        if (pageNum !== 1) {
+          pageNum--;
+          if (pageText) pageText.textContent = `${pageNum}`;
+          updatePagination();
+        }
+      } else {
+        console.log('next');
+        if (pageNum < countPages) {
+          pageNum++;
+          updatePageNumber(pageNum);
+          updatePagination();
+        }
+      }
+      renderCars();
     }
   });
 }

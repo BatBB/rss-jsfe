@@ -4,6 +4,7 @@ import '../global.scss';
 import WinnersPage from '../pages/winnersPage/winnersPage';
 import createElement from '../utils/createElement';
 import addEventListenersClick from '../utils/addEventListeners';
+import { updateCarsCount } from '../components/renders/renderTrack';
 
 export default class App {
   private container: HTMLElement;
@@ -33,6 +34,7 @@ export default class App {
     const main = createElement('main', 'main');
     main.append(this.garagePage.render());
     this.container.append(main);
+    updateCarsCount();
     addEventListenersClick();
   }
 }

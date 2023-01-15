@@ -3,12 +3,11 @@ import { ICar, IOptionsFetch } from '../interfaces/interfaces';
 const urlBase = 'http://localhost:3000';
 const urlGarage = `${urlBase}/garage`;
 
-export async function getCars() {
-  const response = await fetch(`${urlGarage}`);
+export async function getCars(page: number = 1) {
+  const response = await fetch(`${urlGarage}?_page=${page}&_limit=7`);
   const cars: ICar[] = await response.json();
-  // const count = response.headers.get('X-Total-Count');
-  // console.log(count);
-  return cars;
+  const count = Number(response.headers.get('X-Total-Count')) || cars.length;
+  return { cars, count };
 }
 
 export async function getCar(id: number) {
