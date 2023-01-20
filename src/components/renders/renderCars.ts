@@ -1,6 +1,7 @@
 import { getCars } from '../../API/api';
 import createElement from '../../utils/createElement';
 import renderCar from './renderCar';
+import { updatePagination } from './renderPagination';
 
 export default async function renderCars() {
   const pageText = document.querySelector(`.garage__track-page-number`);
@@ -13,4 +14,5 @@ export default async function renderCars() {
   cars.forEach(async (car) => {
     track.append(await renderCar(car));
   });
+  updatePagination();
 }
