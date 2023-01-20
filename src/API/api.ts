@@ -65,8 +65,6 @@ export async function startStopEngine(
   );
   const velocityDistance: IVelocityDistance = await response.json();
   state.carStatus.set(id, status);
-  console.log(state.carStatus.get(id));
-
   return velocityDistance;
 }
 

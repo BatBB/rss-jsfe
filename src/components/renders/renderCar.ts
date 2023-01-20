@@ -12,7 +12,7 @@ export default async function renderCar(car: ICar) {
     </div>
     <div class="way">
       <button class="btn-car-start btn" value="${car.id}">A</button>
-      <button class="btn-car-stop btn" value="${car.id}">B</button>
+      <button class="btn-car-stop btn" value="${car.id}" disabled>B</button>
       <div class="car-image" data-car="${car.id}">${svgImages.car}</div>
       <div class="finish-image">${svgImages.flag}</div>
     </div>

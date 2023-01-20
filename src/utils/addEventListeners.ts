@@ -15,7 +15,7 @@ import {
   updatePageNumber,
 } from '../components/renders/renderTrack';
 import { randomColor, randomName } from './randomize';
-import { startCar } from './carAnimation';
+import { startCar, stopCar } from './carAnimation';
 
 export default function addEventListenersClick() {
   let pageNum = 1;
@@ -121,22 +121,14 @@ export default function addEventListenersClick() {
 
     if (target.classList.contains('btn-car-start')) {
       target.disabled = true;
-      startCar(target.value);
-      // checkStatusCar(target.value);
+      const id = target.value;
+      startCar(id);
     }
 
     if (target.classList.contains('btn-car-stop')) {
       const id = target.value;
-      const carImage = <HTMLElement>(
-        document.querySelector(`.car-image[data-car="${id}"]`)
-      );
-      let currentX = carImage.offsetLeft;
-      console.log(carImage.offsetLeft);
-
-      carImage.style.transform = `translateX(${currentX}px)`;
-      console.log(carImage.offsetLeft);
-
-      const { velocity, distance } = await startStopEngine(id, 'stopped');
+      target.disabled = true;
+      stopCar(id);
     }
 
     if (target.classList.contains('btn-pagination')) {

@@ -29,6 +29,11 @@ export async function animateCar(
 
     if (state.engineStatus.get(id) === false)
       window.cancelAnimationFrame(idRequestAnimation);
+
+    if (state.carStatus.get(id) === 'stopped') {
+      window.cancelAnimationFrame(idRequestAnimation);
+      node.style.transform = `translateX(0px)`;
+    }
   };
   tick();
 }
@@ -47,6 +52,23 @@ export async function startCar(id: string) {
   if (state.carStatus.get(id) === 'started') {
     animateCar(endX, duration, carImage, id);
   }
+  const btnCarStop = <HTMLButtonElement>(
+    document.querySelector(`.btn-car-stop[value="${id}"]`)
+  );
+  btnCarStop.disabled = false;
+}
+
+export async function stopCar(id: string) {
+  const carImage = <HTMLElement>(
+    document.querySelector(`.car-image[data-car="${id}"]`)
+  );
+  state.carStatus.set(id, 'stopped');
+  carImage.style.transform = `translateX(0px)`;
+  await startStopEngine(id, 'stopped');
+  const btnCarStart = <HTMLButtonElement>(
+    document.querySelector(`.btn-car-start[value="${id}"]`)
+  );
+  btnCarStart.disabled = false;
 }
 
 async function switchEngineStatus(id: string) {
