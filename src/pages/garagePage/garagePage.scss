@@ -37,11 +37,13 @@
 .car-image {
   position: relative;
   width: 50px;
+  // transition: translate 3s linear;
 
   &-svg {
     height: 45px;
     width: 100%;
     position: absolute;
+
   }
 }
 

@@ -1,7 +1,14 @@
-import { ICar, IOptionsFetch } from '../interfaces/interfaces';
+import {
+  ICar,
+  IOptionsFetch,
+  ISuccess,
+  IVelocityDistance,
+} from '../interfaces/interfaces';
+import state from '../utils/state';
 
 const urlBase = 'http://localhost:3000';
 const urlGarage = `${urlBase}/garage`;
+const urlEngine = `${urlBase}/engine`;
 
 export async function getCars(page: number = 1) {
   const response = await fetch(`${urlGarage}?_page=${page}&_limit=7`);
@@ -43,4 +50,34 @@ export async function updateCar(car: ICar) {
   const response = await fetch(`${urlGarage}/${car.id}`, options);
   const updCar: ICar = await response.json();
   return updCar;
+}
+
+export async function startStopEngine(
+  id: string,
+  status: 'started' | 'stopped'
+) {
+  const options: IOptionsFetch = {
+    method: 'PATCH',
+  };
+  const response = await fetch(
+    `${urlEngine}?id=${id}&status=${status}`,
+    options
+  );
+  const velocityDistance: IVelocityDistance = await response.json();
+  state.carStatus.set(id, status);
+  console.log(state.carStatus.get(id));
+
+  return velocityDistance;
+}
+
+export async function switchEngine(id: string) {
+  const options: IOptionsFetch = {
+    method: 'PATCH',
+  };
+  const response = await fetch(`${urlEngine}?id=${id}&status=drive`, options);
+
+  if (!response.ok) return false;
+
+  const { success }: ISuccess = await response.json();
+  return success;
 }

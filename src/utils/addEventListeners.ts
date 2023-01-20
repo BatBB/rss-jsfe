@@ -1,4 +1,11 @@
-import { createCar, deleteCar, getCar, getCars, updateCar } from '../API/api';
+import {
+  createCar,
+  deleteCar,
+  getCar,
+  getCars,
+  startStopEngine,
+  updateCar,
+} from '../API/api';
 import App from '../App/App';
 import Header from '../components/header/header';
 import renderCars from '../components/renders/renderCars';
@@ -8,6 +15,7 @@ import {
   updatePageNumber,
 } from '../components/renders/renderTrack';
 import { randomColor, randomName } from './randomize';
+import { startCar } from './carAnimation';
 
 export default function addEventListenersClick() {
   let pageNum = 1;
@@ -111,19 +119,36 @@ export default function addEventListenersClick() {
       await renderCars();
     }
 
+    if (target.classList.contains('btn-car-start')) {
+      target.disabled = true;
+      startCar(target.value);
+      // checkStatusCar(target.value);
+    }
+
+    if (target.classList.contains('btn-car-stop')) {
+      const id = target.value;
+      const carImage = <HTMLElement>(
+        document.querySelector(`.car-image[data-car="${id}"]`)
+      );
+      let currentX = carImage.offsetLeft;
+      console.log(carImage.offsetLeft);
+
+      carImage.style.transform = `translateX(${currentX}px)`;
+      console.log(carImage.offsetLeft);
+
+      const { velocity, distance } = await startStopEngine(id, 'stopped');
+    }
+
     if (target.classList.contains('btn-pagination')) {
       const countPages = Math.ceil(Number((await getCars()).count) / 7);
-      console.log('target', target);
 
       if (target.classList.contains('btn-pagination-prev')) {
-        console.log('prev');
         if (pageNum !== 1) {
           pageNum--;
           if (pageText) pageText.textContent = `${pageNum}`;
           updatePagination();
         }
       } else {
-        console.log('next');
         if (pageNum < countPages) {
           pageNum++;
           updatePageNumber(pageNum);

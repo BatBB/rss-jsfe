@@ -20,3 +20,21 @@ export interface IOptionsFetch {
   body?: string;
   headers?: Headers;
 }
+
+export interface IVelocityDistance {
+  velocity: number;
+  distance: number;
+}
+
+export interface ISuccess {
+  success: boolean;
+}
+
+export interface IState {
+  garagePage: number;
+  winnersPage: number;
+  carStatus: Map<string, statusCarType>;
+  engineStatus: Map<string, boolean>;
+}
+
+export type statusCarType = 'started' | 'stopped' | 'drive';

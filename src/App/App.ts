@@ -38,6 +38,7 @@ export default class App {
     main.append(this.garagePage.render());
     this.container.append(main);
     updateCarsCount();
+    updatePagination();
     addEventListenersClick();
   }
 }
