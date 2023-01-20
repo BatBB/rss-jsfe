@@ -33,6 +33,7 @@ export interface ISuccess {
 export interface IState {
   garagePage: number;
   winnersPage: number;
+  cars: ICar[];
   carStatus: Map<string, statusCarType>;
   engineStatus: Map<string, boolean>;
 }

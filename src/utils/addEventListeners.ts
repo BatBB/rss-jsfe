@@ -1,6 +1,7 @@
 import App from '../App/App';
 import Header from '../components/header/header';
-import { startCar, stopCar } from './carAnimation';
+import btnDisabled from './btnDisabled';
+import { race, reset, startCar, stopCar } from './carAnimation';
 import {
   btnCreateCar,
   btnSelectCar,
@@ -34,11 +35,11 @@ export default function addEventListenersClick() {
     }
 
     if (target.classList.contains('btn-race')) {
-      console.log('race');
+      race();
     }
 
     if (target.classList.contains('btn-reset')) {
-      console.log('reset');
+      reset();
     }
 
     if (target.classList.contains('btn-generate')) {
@@ -54,12 +55,10 @@ export default function addEventListenersClick() {
     }
 
     if (target.classList.contains('btn-car-start')) {
-      target.disabled = true;
       startCar(id);
     }
 
     if (target.classList.contains('btn-car-stop')) {
-      target.disabled = true;
       stopCar(id);
     }
 

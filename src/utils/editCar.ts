@@ -1,6 +1,5 @@
 import { createCar, deleteCar, getCar, updateCar } from '../API/api';
 import renderCars from '../components/renders/renderCars';
-import { updatePagination } from '../components/renders/renderPagination';
 import { updateCarsCount } from '../components/renders/renderTrack';
 import { randomColor, randomName } from './randomize';
 

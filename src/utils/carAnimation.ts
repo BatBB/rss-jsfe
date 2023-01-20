@@ -1,4 +1,5 @@
 import { startStopEngine, switchEngine } from '../API/api';
+import btnDisabled from './btnDisabled';
 import state from './state';
 
 export async function animateCar(
@@ -43,6 +44,9 @@ export async function startCar(id: string) {
     document.querySelector(`.car-image[data-car="${id}"]`)
   );
 
+  btnDisabled(`btn-car-start[value="${id}"]`, true);
+  console.log(state.carStatus.get(id));
+  console.log(state.engineStatus.get(id));
   const { velocity, distance } = await startStopEngine(id, 'started');
   const duration = distance / velocity;
 
@@ -52,10 +56,7 @@ export async function startCar(id: string) {
   if (state.carStatus.get(id) === 'started') {
     animateCar(endX, duration, carImage, id);
   }
-  const btnCarStop = <HTMLButtonElement>(
-    document.querySelector(`.btn-car-stop[value="${id}"]`)
-  );
-  btnCarStop.disabled = false;
+  btnDisabled(`btn-car-stop[value="${id}"]`, false);
 }
 
 export async function stopCar(id: string) {
@@ -63,15 +64,32 @@ export async function stopCar(id: string) {
     document.querySelector(`.car-image[data-car="${id}"]`)
   );
   state.carStatus.set(id, 'stopped');
+  state.engineStatus.delete(id);
   carImage.style.transform = `translateX(0px)`;
+  btnDisabled(`btn-car-stop[value="${id}"]`, true);
   await startStopEngine(id, 'stopped');
-  const btnCarStart = <HTMLButtonElement>(
-    document.querySelector(`.btn-car-start[value="${id}"]`)
-  );
-  btnCarStart.disabled = false;
+  btnDisabled(`btn-car-start[value="${id}"]`, false);
 }
 
 async function switchEngineStatus(id: string) {
   const statusEngine = await switchEngine(id);
   state.engineStatus.set(id, statusEngine);
+}
+
+export function race() {
+  btnDisabled('btn-race', true);
+  state.cars.forEach((car) => {
+    const id = car.id!.toString();
+    startCar(id);
+  });
+  btnDisabled('btn-reset', false);
+}
+
+export function reset() {
+  btnDisabled('btn-reset', true);
+  state.cars.forEach((car) => {
+    const id = car.id!.toString();
+    stopCar(id);
+  });
+  btnDisabled('btn-race', false);
 }

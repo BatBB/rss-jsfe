@@ -1,6 +1,6 @@
 import Component from '../../components/component';
 import renderCars from '../../components/renders/renderCars';
-import renderContainerMake from '../../components/renders/renderMake';
+import renderContainerMake from '../../components/renders/renderEdit';
 import { renderPagination } from '../../components/renders/renderPagination';
 import {
   renderTrack,

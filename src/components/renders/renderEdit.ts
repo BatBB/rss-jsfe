@@ -15,7 +15,7 @@ export default function renderContainerMake() {
     </div>
     <div class="garage__make-buttons">
       <button class="btn btn-race">RACE</button>
-      <button class="btn btn-reset">RESET</button>
+      <button class="btn btn-reset" disabled>RESET</button>
       <button class="btn btn-generate">GENERATE CARS</button>
     </div>
   </div>
