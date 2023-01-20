@@ -40,19 +40,18 @@ export async function animateCar(
 }
 
 export async function startCar(id: string) {
+  btnDisabled(`btn-car-start[value="${id}"]`, true);
+
   const carImage = <HTMLElement>(
     document.querySelector(`.car-image[data-car="${id}"]`)
   );
 
-  btnDisabled(`btn-car-start[value="${id}"]`, true);
-  console.log(state.carStatus.get(id));
-  console.log(state.engineStatus.get(id));
   const { velocity, distance } = await startStopEngine(id, 'started');
   const duration = distance / velocity;
-
   const startX = 0;
   const widthDisplay = window.innerWidth;
   const endX = widthDisplay - startX - 160;
+
   if (state.carStatus.get(id) === 'started') {
     animateCar(endX, duration, carImage, id);
   }
@@ -64,10 +63,10 @@ export async function stopCar(id: string) {
     document.querySelector(`.car-image[data-car="${id}"]`)
   );
   state.carStatus.set(id, 'stopped');
-  state.engineStatus.delete(id);
   carImage.style.transform = `translateX(0px)`;
   btnDisabled(`btn-car-stop[value="${id}"]`, true);
   await startStopEngine(id, 'stopped');
+  state.engineStatus.delete(id);
   btnDisabled(`btn-car-start[value="${id}"]`, false);
 }
 

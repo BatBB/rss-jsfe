@@ -1,6 +1,5 @@
 import App from '../App/App';
 import Header from '../components/header/header';
-import btnDisabled from './btnDisabled';
 import { race, reset, startCar, stopCar } from './carAnimation';
 import {
   btnCreateCar,
