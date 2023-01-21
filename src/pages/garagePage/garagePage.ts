@@ -6,6 +6,7 @@ import {
   renderTrack,
   updateCarsCount,
 } from '../../components/renders/renderTrack';
+import createElement from '../../utils/createElement';
 import './garagePage.scss';
 
 export default class GaragePage extends Component {

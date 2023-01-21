@@ -34,8 +34,12 @@ export interface IState {
   garagePage: number;
   winnersPage: number;
   cars: ICar[];
-  carStatus: Map<string, statusCarType>;
-  engineStatus: Map<string, boolean>;
+  engineStatus: Map<string, statusEngineType>;
+  engineIsOk: Map<string, boolean>;
+  winner: winnerType;
+  isRace: boolean;
 }
 
-export type statusCarType = 'started' | 'stopped' | 'drive';
+export type statusEngineType = 'started' | 'stopped' | 'drive';
+
+export type winnerType = { name: string; time: number } | null;

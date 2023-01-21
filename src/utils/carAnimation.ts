@@ -4,13 +4,13 @@ import state from './state';
 
 export async function animateCar(
   endX: number,
-  duration: number,
+  time: number,
   node: HTMLElement,
   id: string
 ) {
   let currentX = 0;
 
-  const frameCount = (duration / 1000) * 60;
+  const frameCount = (time / 1000) * 60;
   const dX = (endX - node.offsetLeft) / frameCount;
 
   let idRequestAnimation: number = 0;
@@ -19,21 +19,25 @@ export async function animateCar(
     currentX += dX;
     node.style.transform = `translateX(${currentX}px)`;
 
-    if (state.carStatus.get(id) === 'started') {
-      state.carStatus.set(id, 'drive');
-      switchEngineStatus(id);
+    if (state.engineStatus.get(id) === 'started') {
+      state.engineStatus.set(id, 'drive');
+      switchEngineStatus(id, time);
     }
 
-    if (currentX < endX && state.carStatus.get(id) !== 'stopped') {
+    if (currentX < endX && state.engineStatus.get(id) !== 'stopped') {
       idRequestAnimation = requestAnimationFrame(tick);
     }
 
-    if (state.engineStatus.get(id) === false)
-      window.cancelAnimationFrame(idRequestAnimation);
+    if (currentX >= endX && state.isRace) {
+      state.isRace = false;
+      winnerMessage(id, time);
+    }
 
-    if (state.carStatus.get(id) === 'stopped') {
+    if (
+      state.engineIsOk.get(id) === false ||
+      state.engineStatus.get(id) === 'stopped'
+    ) {
       window.cancelAnimationFrame(idRequestAnimation);
-      node.style.transform = `translateX(0px)`;
     }
   };
   tick();
@@ -47,13 +51,14 @@ export async function startCar(id: string) {
   );
 
   const { velocity, distance } = await startStopEngine(id, 'started');
-  const duration = distance / velocity;
+  const time = distance / velocity;
   const startX = 0;
   const widthDisplay = window.innerWidth;
   const endX = widthDisplay - startX - 160;
 
-  if (state.carStatus.get(id) === 'started') {
-    animateCar(endX, duration, carImage, id);
+  if (state.engineStatus.get(id) === 'started') {
+    animateCar(endX, time, carImage, id);
+    console.log(state);
   }
   btnDisabled(`btn-car-stop[value="${id}"]`, false);
 }
@@ -62,7 +67,7 @@ export async function stopCar(id: string) {
   const carImage = <HTMLElement>(
     document.querySelector(`.car-image[data-car="${id}"]`)
   );
-  state.carStatus.set(id, 'stopped');
+  state.engineStatus.set(id, 'stopped');
   carImage.style.transform = `translateX(0px)`;
   btnDisabled(`btn-car-stop[value="${id}"]`, true);
   await startStopEngine(id, 'stopped');
@@ -70,13 +75,15 @@ export async function stopCar(id: string) {
   btnDisabled(`btn-car-start[value="${id}"]`, false);
 }
 
-async function switchEngineStatus(id: string) {
-  const statusEngine = await switchEngine(id);
-  state.engineStatus.set(id, statusEngine);
+async function switchEngineStatus(id: string, time: number) {
+  const engineIsOk = await switchEngine(id);
+  state.engineIsOk.set(id, engineIsOk);
+  // if (engineIsOk && !state.isRace) state.winner = { name: id, time: time };
 }
 
 export function race() {
   btnDisabled('btn-race', true);
+  state.isRace = true;
   state.cars.forEach((car) => {
     const id = car.id!.toString();
     startCar(id);
@@ -92,3 +99,24 @@ export function reset() {
   });
   btnDisabled('btn-race', false);
 }
+
+const winnerMessage = (id: string, time: number) => {
+  const messageContainer = <HTMLElement>document.querySelector('.message');
+  messageContainer.style.visibility = 'visible';
+  const messageCar = <HTMLElement>document.querySelector('.message-car');
+  const messageTime = <HTMLElement>document.querySelector('.message-time');
+  messageCar.textContent = state.cars.find(
+    (car) => car.id === Number(id)
+  )!.name;
+  messageTime.textContent = `${convertTime(time)}`;
+  hiddenMessage();
+};
+
+const convertTime = (time: number) => Math.round(time) / 1000;
+
+const hiddenMessage = () => {
+  setInterval(() => {
+    const messageContainer = <HTMLElement>document.querySelector('.message');
+    messageContainer.style.visibility = 'hidden';
+  }, 5000);
+};

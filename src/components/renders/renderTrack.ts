@@ -15,7 +15,6 @@ export function renderTrack() {
 
 export async function updateCarsCount() {
   const count = document.querySelector('.garage__track-cars-count');
-
   if (count) count.textContent = `${(await getCars()).count}`;
 }
 
