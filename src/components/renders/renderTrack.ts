@@ -1,11 +1,12 @@
 import { getCars } from '../../API/apiGarage';
 import createElement from '../../utils/createElement';
+import state from '../../utils/state';
 
 export function renderTrack() {
   const template = `
-  <p class="garage__track-cars">Garage (<span class="garage__track-cars-count"></span>)</p>
+  <p class="garage__track-cars">Garage (<span class="garage__track-cars-count">${state.cars.length}</span>)</p>
   <p class="garage__track-page">
-    Page #<span class="garage-page-number page-number">${1}</span>
+    Page #<span class="garage-page-number page-number">${state.garagePage}</span>
   </p>
   <div class="garage__track-container"></div>`;
   const element = createElement('div', 'garage__track');

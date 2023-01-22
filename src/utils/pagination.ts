@@ -1,6 +1,7 @@
 import { getCars } from '../API/apiGarage';
 import renderCars from '../components/renders/renderCars';
 import { updatePagination } from '../components/renders/renderPagination';
+import state from './state';
 
 export default async function paginationPage(node: HTMLElement) {
   const pageText = document.querySelector(`.page-number`);
@@ -23,6 +24,7 @@ export default async function paginationPage(node: HTMLElement) {
       updatePagination('garage');
     }
   }
+  state.garagePage = pageNum;
   renderCars();
 }
 
