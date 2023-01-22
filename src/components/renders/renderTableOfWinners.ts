@@ -20,7 +20,6 @@ export async function renderTableOfWinners(node: HTMLElement) {
     <th class="winners__table-column">${winner.wins}</th>
     <th class="winners__table-column">${winner.time}</th>`;
     tr.innerHTML = template;
-    console.log(table);
     table?.append(tr);
   });
 }

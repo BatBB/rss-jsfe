@@ -1,6 +1,7 @@
 import { startStopEngine, switchEngine } from '../API/apiGarage';
 import btnDisabled from './btnDisabled';
 import state from './state';
+import { addWinner } from './winners';
 
 export async function animateCar(
   endX: number,
@@ -31,6 +32,7 @@ export async function animateCar(
     if (currentX >= endX && state.isRace) {
       state.isRace = false;
       winnerMessage(id, time);
+      addWinner(id, convertTime(time));
     }
 
     if (
@@ -102,6 +104,8 @@ export function reset() {
 
 const winnerMessage = (id: string, time: number) => {
   const messageContainer = <HTMLElement>document.querySelector('.message');
+  console.log(messageContainer);
+
   messageContainer.style.visibility = 'visible';
   const messageCar = <HTMLElement>document.querySelector('.message-car');
   const messageTime = <HTMLElement>document.querySelector('.message-time');

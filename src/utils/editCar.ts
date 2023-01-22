@@ -58,7 +58,6 @@ export async function btnCreateCar() {
   }
   inputText.value = '';
   inputColor.value = '#000000';
-  // updatePagination();
 }
 
 export async function generateCars() {
