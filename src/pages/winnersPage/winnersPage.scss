@@ -8,6 +8,10 @@
   &__table {
     &-column {
       padding: 0 20px;
+
+      & .car-image-svg {
+        position: static;
+      }
     }
   }
 }

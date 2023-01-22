@@ -1,5 +1,8 @@
-import { getCars } from '../../API/api';
+import { getCars } from '../../API/apiGarage';
+import { getWinners } from '../../API/apiWinners';
+import { MAX_LIMIT_CARS, MAX_LIMIT_WINNERS } from '../../interfaces/consts';
 import createElement from '../../utils/createElement';
+import state from '../../utils/state';
 
 export function renderPagination(currentPage: 'garage' | 'winners') {
   const template = `
@@ -14,17 +17,21 @@ export function renderPagination(currentPage: 'garage' | 'winners') {
   return pagination;
 }
 
-export async function updatePagination() {
+export async function updatePagination(currentPage: 'garage' | 'winners') {
   const btnPrev = <HTMLButtonElement>(
     document.querySelector('.btn-pagination-prev')
   );
   const btnNext = <HTMLButtonElement>(
     document.querySelector('.btn-pagination-next')
   );
-  const pageText = document.querySelector('.garage__track-page-number');
-  const currentPage = Number(pageText?.textContent);
-  const countPages = (await getCars()).count / 7;
+  const pageText = document.querySelector(`.${currentPage}-page-number`);
+  const pageNumber = Number(pageText?.textContent);
+  const countPages =
+    currentPage === 'garage'
+      ? (await getCars()).count / MAX_LIMIT_CARS
+      : (await getWinners(state.winnersPage, state.sort, state.order)).count /
+        MAX_LIMIT_WINNERS;
 
-  btnPrev.disabled = currentPage === 1;
-  btnNext.disabled = currentPage >= countPages;
+  btnPrev.disabled = pageNumber === 1;
+  btnNext.disabled = pageNumber >= countPages;
 }

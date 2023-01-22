@@ -17,17 +17,6 @@ export default class Header extends Component {
     this.container.append(element);
   }
 
-  static updateBtnHeader() {
-    const btnGarage = <HTMLButtonElement>document.querySelector('.btn-garage');
-    const btnWinners = <HTMLButtonElement>(
-      document.querySelector('.btn-winners')
-    );
-    console.log(btnGarage.disabled, btnWinners.disabled);
-
-    btnGarage.disabled = !btnGarage.disabled;
-    btnWinners.disabled = !btnWinners.disabled;
-  }
-
   render(): HTMLElement {
     this.renderHeader();
     return this.container;

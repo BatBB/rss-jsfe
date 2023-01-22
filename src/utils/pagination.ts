@@ -1,10 +1,11 @@
-import { getCars } from '../API/api';
+import { getCars } from '../API/apiGarage';
 import renderCars from '../components/renders/renderCars';
 import { updatePagination } from '../components/renders/renderPagination';
-import { updatePageNumber } from '../components/renders/renderTrack';
 
 export default async function paginationPage(node: HTMLElement) {
-  const pageText = document.querySelector(`.garage__track-page-number`);
+  const pageText = document.querySelector(`.page-number`);
+  console.log(pageText);
+
   let pageNum = Number(pageText?.textContent) || 1;
 
   const countPages = Math.ceil(Number((await getCars()).count) / 7);
@@ -13,14 +14,20 @@ export default async function paginationPage(node: HTMLElement) {
     if (pageNum !== 1) {
       pageNum--;
       if (pageText) pageText.textContent = `${pageNum}`;
-      updatePagination();
+      updatePagination('garage');
     }
   } else {
     if (pageNum < countPages) {
       pageNum++;
       updatePageNumber(pageNum);
-      updatePagination();
+      updatePagination('garage');
     }
   }
   renderCars();
+}
+
+export function updatePageNumber(page: number) {
+  const pageNumber = document.querySelector('.page-number');
+
+  if (pageNumber) pageNumber.textContent = `${page}`;
 }

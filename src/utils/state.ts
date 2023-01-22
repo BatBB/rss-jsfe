@@ -6,7 +6,9 @@ const state: IState = {
   cars: [],
   engineStatus: new Map(),
   engineIsOk: new Map(),
-  winner: null,
+  winners: [],
+  sort: 'wins',
+  order: 'ASC',
   isRace: false,
 };
 

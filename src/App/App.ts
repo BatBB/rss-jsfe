@@ -6,6 +6,7 @@ import createElement from '../utils/createElement';
 import addEventListenersClick from '../utils/addEventListeners';
 import { updateCarsCount } from '../components/renders/renderTrack';
 import { updatePagination } from '../components/renders/renderPagination';
+import btnDisabled from '../utils/btnDisabled';
 
 export default class App {
   private container: HTMLElement;
@@ -24,12 +25,17 @@ export default class App {
       main.innerHTML = '';
       if (page === 'garagePage') {
         main.append(garagePage.render());
+        btnDisabled('btn-garage', true);
+        btnDisabled('btn-winners', false);
+        updateCarsCount();
+        updatePagination('garage');
       } else {
         main.append(winnersPage.render());
+        btnDisabled('btn-garage', false);
+        btnDisabled('btn-winners', true);
+        updatePagination('winners');
       }
     }
-    updateCarsCount();
-    updatePagination();
   }
 
   private renderMessage(): HTMLElement {
@@ -46,7 +52,7 @@ export default class App {
     main.append(this.renderMessage());
     this.container.append(main);
     updateCarsCount();
-    updatePagination();
+    updatePagination('garage');
     addEventListenersClick();
   }
 }

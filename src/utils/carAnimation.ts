@@ -1,4 +1,4 @@
-import { startStopEngine, switchEngine } from '../API/api';
+import { startStopEngine, switchEngine } from '../API/apiGarage';
 import btnDisabled from './btnDisabled';
 import state from './state';
 
@@ -38,6 +38,8 @@ export async function animateCar(
       state.engineStatus.get(id) === 'stopped'
     ) {
       window.cancelAnimationFrame(idRequestAnimation);
+      if (state.engineStatus.get(id) === 'stopped')
+        node.style.transform = `translateX(0px)`;
     }
   };
   tick();
@@ -58,7 +60,6 @@ export async function startCar(id: string) {
 
   if (state.engineStatus.get(id) === 'started') {
     animateCar(endX, time, carImage, id);
-    console.log(state);
   }
   btnDisabled(`btn-car-stop[value="${id}"]`, false);
 }
@@ -71,14 +72,13 @@ export async function stopCar(id: string) {
   carImage.style.transform = `translateX(0px)`;
   btnDisabled(`btn-car-stop[value="${id}"]`, true);
   await startStopEngine(id, 'stopped');
-  state.engineStatus.delete(id);
+  state.engineIsOk.delete(id);
   btnDisabled(`btn-car-start[value="${id}"]`, false);
 }
 
 async function switchEngineStatus(id: string, time: number) {
   const engineIsOk = await switchEngine(id);
   state.engineIsOk.set(id, engineIsOk);
-  // if (engineIsOk && !state.isRace) state.winner = { name: id, time: time };
 }
 
 export function race() {
@@ -93,9 +93,9 @@ export function race() {
 
 export function reset() {
   btnDisabled('btn-reset', true);
-  state.cars.forEach((car) => {
+  state.cars.forEach(async (car) => {
     const id = car.id!.toString();
-    stopCar(id);
+    await stopCar(id);
   });
   btnDisabled('btn-race', false);
 }

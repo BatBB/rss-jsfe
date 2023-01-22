@@ -1,4 +1,4 @@
-import { createCar, deleteCar, getCar, updateCar } from '../API/api';
+import { createCar, deleteCar, getCar, updateCar } from '../API/apiGarage';
 import renderCars from '../components/renders/renderCars';
 import { updateCarsCount } from '../components/renders/renderTrack';
 import btnDisabled from './btnDisabled';

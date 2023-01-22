@@ -36,10 +36,16 @@ export interface IState {
   cars: ICar[];
   engineStatus: Map<string, statusEngineType>;
   engineIsOk: Map<string, boolean>;
-  winner: winnerType;
+  winners: IWinner[];
+  sort: winnersSortType;
+  order: winnerOrderType;
   isRace: boolean;
 }
 
 export type statusEngineType = 'started' | 'stopped' | 'drive';
 
-export type winnerType = { name: string; time: number } | null;
+export type winnersType = { name: string; time: number } | null;
+
+export type winnersSortType = 'id' | 'wins' | 'time';
+
+export type winnerOrderType = 'ASC' | 'DESC';

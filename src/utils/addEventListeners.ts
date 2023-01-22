@@ -1,5 +1,4 @@
 import App from '../App/App';
-import Header from '../components/header/header';
 import { race, reset, startCar, stopCar } from './carAnimation';
 import {
   btnCreateCar,
@@ -17,12 +16,10 @@ export default function addEventListenersClick() {
 
     if (target.classList.contains('btn-garage')) {
       App.renderMain('garagePage');
-      Header.updateBtnHeader();
     }
 
     if (target.classList.contains('btn-winners')) {
       App.renderMain('winnersPage');
-      Header.updateBtnHeader();
     }
 
     if (target.classList.contains('btn-create')) {
