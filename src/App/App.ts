@@ -38,18 +38,10 @@ export default class App {
     }
   }
 
-  private renderMessage(): HTMLElement {
-    const messageContainer = createElement('div', 'message');
-    const template = `<p class='message-text'><span class='message-car'></span> won the race with the fastest time <span class='message-time'></span> s</p>`;
-    messageContainer.innerHTML = template;
-    return messageContainer;
-  }
-
   run() {
     this.container.append(this.header.render());
     const main = createElement('main', 'main');
     main.append(this.garagePage.render());
-    main.append(this.renderMessage());
     this.container.append(main);
     updateCarsCount();
     updatePagination('garage');
