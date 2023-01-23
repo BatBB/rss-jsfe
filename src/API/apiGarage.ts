@@ -8,8 +8,8 @@ import {
 import state from '../utils/state';
 
 export async function getCars(page: number, limit: number = MAX_LIMIT_CARS) {
-  const searchPage = page ? `?_page=${page}&_limit=${limit}` : '';
-  const response = await fetch(`${URL_GARAGE}${searchPage}`);
+  const searchParam = page ? `?_page=${page}&_limit=${limit}` : '';
+  const response = await fetch(`${URL_GARAGE}${searchParam}`);
   const cars: ICar[] = await response.json();
   const count = Number(response.headers.get('X-Total-Count')) || cars.length;
   return { cars, count };

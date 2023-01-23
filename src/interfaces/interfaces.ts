@@ -42,6 +42,8 @@ export interface IState {
   isRace: boolean;
 }
 
+export type pagesType = 'garage' | 'winners';
+
 export type statusEngineType = 'started' | 'stopped' | 'drive';
 
 export type winnersType = { name: string; time: number } | null;

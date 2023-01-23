@@ -1,30 +1,43 @@
-import { getCars } from '../API/apiGarage';
 import renderCars from '../components/renders/renderCars';
 import { updatePagination } from '../components/renders/renderPagination';
+import { renderTableOfWinners } from '../components/renders/renderTableOfWinners';
+import { MAX_LIMIT_CARS, MAX_LIMIT_WINNERS } from '../interfaces/consts';
+import { pagesType } from '../interfaces/interfaces';
 import state from './state';
 
 export default async function paginationPage(node: HTMLElement) {
+  let currentPage: pagesType = node.className.includes('garage')
+    ? 'garage'
+    : 'winners';
   const pageText = document.querySelector(`.page-number`);
+  let pageNum = state[`${currentPage}Page`];
 
-  let pageNum = Number(pageText?.textContent) || 1;
+  console.log(currentPage);
 
-  const countPages = Math.ceil(Number((await getCars(0)).count) / 7);
+  const countPages =
+    currentPage === 'garage'
+      ? Math.ceil(state.cars.length / MAX_LIMIT_CARS) || 1
+      : Math.ceil(state.winners.length / MAX_LIMIT_WINNERS) || 1;
+  console.log('countPages', state.winners.length);
 
   if (node.classList.contains('btn-pagination-prev')) {
-    if (pageNum !== 1) {
+    if (pageNum > 1) {
       pageNum--;
       if (pageText) pageText.textContent = `${pageNum}`;
-      updatePagination('garage');
+      updatePageNumber(pageNum);
+      updatePagination(currentPage);
     }
   } else {
     if (pageNum < countPages) {
       pageNum++;
       updatePageNumber(pageNum);
-      updatePagination('garage');
+      updatePagination(currentPage);
     }
   }
-  state.garagePage = pageNum;
-  renderCars();
+  state[`${currentPage}Page`] = pageNum;
+  console.log('state[`${currentPage}Page`]', state[`${currentPage}Page`]);
+
+  currentPage === 'garage' ? renderCars() : renderTableOfWinners(document.body);
 }
 
 export function updatePageNumber(page: number) {

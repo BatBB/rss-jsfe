@@ -1,37 +1,52 @@
 import { getCars } from '../../API/apiGarage';
 import { getWinners } from '../../API/apiWinners';
 import { MAX_LIMIT_CARS, MAX_LIMIT_WINNERS } from '../../interfaces/consts';
+import { pagesType } from '../../interfaces/interfaces';
 import createElement from '../../utils/createElement';
 import state from '../../utils/state';
 
-export function renderPagination(currentPage: 'garage' | 'winners') {
-  const template = `
-      <button class="btn btn-pagination btn-pagination-prev" disabled>< Prev</button>
-      <button class="btn btn-pagination btn-pagination-next">Next ></button>`;
+export function renderPagination(currentPage: pagesType) {
+  const paginationBtnPrev = <HTMLButtonElement>(
+    createElement(
+      'button',
+      `btn btn-pagination btn-pagination-prev btn-pagination-prev-${currentPage}`
+    )
+  );
+  const paginationBtnNext = <HTMLButtonElement>(
+    createElement(
+      'button',
+      `btn btn-pagination btn-pagination-next btn-pagination-next-${currentPage}`
+    )
+  );
+
+  paginationBtnPrev.textContent = 'Prev';
+  paginationBtnNext.textContent = 'Next';
 
   const pagination = createElement(
     'div',
     `pagination pagination-${currentPage}`
   );
-  pagination.innerHTML = template;
+  pagination.append(paginationBtnPrev);
+  pagination.append(paginationBtnNext);
   return pagination;
 }
 
-export async function updatePagination(currentPage: 'garage' | 'winners') {
+export function updatePagination(currentPage: pagesType) {
   const btnPrev = <HTMLButtonElement>(
-    document.querySelector('.btn-pagination-prev')
+    document.querySelector(`.btn-pagination-prev-${currentPage}`)
   );
   const btnNext = <HTMLButtonElement>(
-    document.querySelector('.btn-pagination-next')
+    document.querySelector(`.btn-pagination-next-${currentPage}`)
   );
-  const pageText = document.querySelector(`.${currentPage}-page-number`);
-  const pageNumber = Number(pageText?.textContent);
+
+  const pageNumber = state[`${currentPage}Page`];
+
   const countPages =
     currentPage === 'garage'
-      ? (await getCars(0)).count / MAX_LIMIT_CARS
-      : (await getWinners(state.winnersPage, state.sort, state.order)).count /
-        MAX_LIMIT_WINNERS;
+      ? Math.ceil(state.cars.length / MAX_LIMIT_CARS) || 1
+      : Math.ceil(state.winners.length / MAX_LIMIT_WINNERS) || 1;
 
-  btnPrev.disabled = pageNumber === 1;
+  btnPrev.disabled =
+    currentPage === 'garage' ? state.garagePage === 1 : state.winnersPage === 1;
   btnNext.disabled = pageNumber >= countPages;
 }

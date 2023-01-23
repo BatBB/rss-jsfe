@@ -1,5 +1,6 @@
 import { deleteCar } from '../API/apiGarage';
 import App from '../App/App';
+import { updateCountWinners } from '../components/renders/renderWinners';
 import { race, reset, startCar, stopCar } from './carAnimation';
 import {
   btnCreateCar,
@@ -20,6 +21,7 @@ export default function addEventListenersClick() {
     }
 
     if (target.classList.contains('btn-winners')) {
+      await updateCountWinners();
       App.renderMain('winnersPage');
     }
 

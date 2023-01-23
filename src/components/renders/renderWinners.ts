@@ -7,7 +7,7 @@ export function renderWinners() {
   const template = `
   <p class="winners__count-text">Winners (<span class="winners-count">${state.winners.length}</span>)</p>
   <p class="winners__page-text">
-    Page #<span class="winners__page-number">${state.winnersPage}</span>
+    Page #<span class="page-number">${state.winnersPage}</span>
   </p>
   <table class="winners__table">
       <thead>
@@ -67,10 +67,8 @@ export function renderWinners() {
 }
 
 export async function updateCountWinners() {
+  state.winners = [...(await getWinners(0, state.sort, state.order)).winners];
   const count = document.querySelector('.winners-count');
 
-  if (count)
-    count.textContent = `${
-      (await getWinners(state.winnersPage, state.sort, state.order)).count
-    }`;
+  if (count) count.textContent = `${state.winners.length}`;
 }

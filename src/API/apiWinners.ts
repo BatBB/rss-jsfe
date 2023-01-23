@@ -12,9 +12,11 @@ export async function getWinners(
   order: winnerOrderType,
   limit = MAX_LIMIT_WINNERS
 ) {
-  const response = await fetch(
-    `${URL_WINNERS}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
-  );
+  const searchParam = page
+    ? `?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
+    : '';
+
+  const response = await fetch(`${URL_WINNERS}${searchParam}`);
   const winners: IWinner[] = await response.json();
   const count = Number(response.headers.get('X-Total-Count')) || winners.length;
   return { winners: winners, count };

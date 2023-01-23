@@ -1,4 +1,3 @@
-import { getWinners } from '../../API/apiWinners';
 import Component from '../../components/component';
 import { renderPagination } from '../../components/renders/renderPagination';
 import { renderTableOfWinners } from '../../components/renders/renderTableOfWinners';
