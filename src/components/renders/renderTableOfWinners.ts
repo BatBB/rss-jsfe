@@ -4,7 +4,9 @@ import createElement from '../../utils/createElement';
 import state from '../../utils/state';
 
 export async function renderTableOfWinners(node: HTMLElement) {
-  const table = node.querySelector('.winners__table');
+  const table = node.querySelector('.table-body');
+  table!.innerHTML = '';
+
   const winners = (await getWinners(state.winnersPage, state.sort, state.order))
     .winners;
   state.winners = [...winners];

@@ -7,7 +7,7 @@ const state: IState = {
   engineStatus: new Map(),
   engineIsOk: new Map(),
   winners: [],
-  sort: 'wins',
+  sort: 'id',
   order: 'ASC',
   isRace: false,
 };

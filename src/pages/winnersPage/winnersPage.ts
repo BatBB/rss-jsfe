@@ -19,7 +19,6 @@ export default class WinnersPage extends Component {
 
   render(): HTMLElement {
     this.setStateWinners();
-
     this.container.append(renderWinners());
     this.container.append(renderPagination('winners'));
     renderTableOfWinners(this.container);

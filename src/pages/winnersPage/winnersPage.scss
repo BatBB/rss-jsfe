@@ -1,19 +1,31 @@
 .winners {
 
+  &__container {
+    height: 350px;
+  }
+
   &__count-text,
   &__page-text {
     margin-bottom: 20px;
   }
 
   &__table {
-    margin-bottom: 20px;
 
     &-column {
       padding: 0 20px;
+      text-align: center;
 
       & .car-image-svg {
         position: static;
       }
     }
+  }
+}
+
+.sort {
+  cursor: pointer;
+
+  &::after {
+    content: attr(data-after);
   }
 }
