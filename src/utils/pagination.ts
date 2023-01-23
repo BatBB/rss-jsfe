@@ -8,7 +8,7 @@ export default async function paginationPage(node: HTMLElement) {
 
   let pageNum = Number(pageText?.textContent) || 1;
 
-  const countPages = Math.ceil(Number((await getCars()).count) / 7);
+  const countPages = Math.ceil(Number((await getCars(0)).count) / 7);
 
   if (node.classList.contains('btn-pagination-prev')) {
     if (pageNum !== 1) {

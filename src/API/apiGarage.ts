@@ -1,4 +1,4 @@
-import { URL_ENGINE, URL_GARAGE } from '../interfaces/consts';
+import { MAX_LIMIT_CARS, URL_ENGINE, URL_GARAGE } from '../interfaces/consts';
 import {
   ICar,
   IOptionsFetch,
@@ -7,8 +7,9 @@ import {
 } from '../interfaces/interfaces';
 import state from '../utils/state';
 
-export async function getCars(page: number = 1) {
-  const response = await fetch(`${URL_GARAGE}?_page=${page}&_limit=7`);
+export async function getCars(page: number, limit: number = MAX_LIMIT_CARS) {
+  const searchPage = page ? `?_page=${page}&_limit=${limit}` : '';
+  const response = await fetch(`${URL_GARAGE}${searchPage}`);
   const cars: ICar[] = await response.json();
   const count = Number(response.headers.get('X-Total-Count')) || cars.length;
   return { cars, count };

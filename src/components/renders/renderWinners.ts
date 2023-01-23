@@ -1,3 +1,4 @@
+import { getWinners } from '../../API/apiWinners';
 import createElement from '../../utils/createElement';
 import state from '../../utils/state';
 import { renderTableOfWinners } from './renderTableOfWinners';
@@ -68,5 +69,8 @@ export function renderWinners() {
 export async function updateCountWinners() {
   const count = document.querySelector('.winners-count');
 
-  if (count) count.textContent = `${state.winners.length}`;
+  if (count)
+    count.textContent = `${
+      (await getWinners(state.winnersPage, state.sort, state.order)).count
+    }`;
 }

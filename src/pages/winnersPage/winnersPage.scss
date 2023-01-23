@@ -1,7 +1,7 @@
 .winners {
 
   &__container {
-    height: 350px;
+    margin-bottom: 20px;
   }
 
   &__count-text,
@@ -17,6 +17,7 @@
 
       & .car-image-svg {
         position: static;
+        height: 35px;
       }
     }
   }

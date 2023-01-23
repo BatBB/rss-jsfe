@@ -28,7 +28,7 @@ export async function updatePagination(currentPage: 'garage' | 'winners') {
   const pageNumber = Number(pageText?.textContent);
   const countPages =
     currentPage === 'garage'
-      ? (await getCars()).count / MAX_LIMIT_CARS
+      ? (await getCars(0)).count / MAX_LIMIT_CARS
       : (await getWinners(state.winnersPage, state.sort, state.order)).count /
         MAX_LIMIT_WINNERS;
 

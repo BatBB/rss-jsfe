@@ -7,7 +7,7 @@ import { updatePagination } from './renderPagination';
 export default async function renderCars() {
   const page = state.garagePage;
   const cars = (await getCars(page)).cars;
-  state.cars = [...cars];
+  state.cars = [...(await getCars(0)).cars];
 
   const track =
     document.querySelector('.garage__track-container') ||
