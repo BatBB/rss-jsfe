@@ -5,10 +5,10 @@ import renderCar from './renderCar';
 import { updatePagination } from './renderPagination';
 
 export default async function renderCars() {
-  const pageText = document.querySelector(`.garage-page-number`);
   const page = state.garagePage;
   const cars = (await getCars(page)).cars;
   state.cars = [...cars];
+
   const track =
     document.querySelector('.garage__track-container') ||
     createElement('div', '.garage__track-container');

@@ -1,13 +1,9 @@
-import { getWinners } from '../../API/apiWinners';
-import { MAX_LIMIT_WINNERS } from '../../interfaces/consts';
 import createElement from '../../utils/createElement';
 import state from '../../utils/state';
 
 export function renderWinners() {
   const template = `
-  <p class="winners__count-text">Winners (<span class="winners-count">${Math.round(
-    state.winners.length / MAX_LIMIT_WINNERS
-  )}</span>)</p>
+  <p class="winners__count-text">Winners (<span class="winners-count">${state.winners.length}</span>)</p>
   <p class="winners__page-text">
     Page #<span class="winners__page-number">${state.winnersPage}</span>
   </p>
@@ -27,7 +23,6 @@ export function renderWinners() {
 
 export async function updateCountWinners() {
   const count = document.querySelector('.winners-count');
-  console.log(count);
 
-  if (count) count.textContent = `${(await getWinners(1, 'id', 'ASC')).count}`;
+  if (count) count.textContent = `${state.winners.length}`;
 }

@@ -5,7 +5,6 @@ import state from './state';
 
 export default async function paginationPage(node: HTMLElement) {
   const pageText = document.querySelector(`.page-number`);
-  console.log(pageText);
 
   let pageNum = Number(pageText?.textContent) || 1;
 

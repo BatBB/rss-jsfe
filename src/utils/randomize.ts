@@ -1,5 +1,5 @@
 const getRandom = (endNum: number) => Math.floor(Math.random() * endNum);
-const carNames = [
+const carBrands = [
   'Audi',
   'BMW',
   'Ford',
@@ -16,6 +16,43 @@ const carNames = [
   'Toyota',
   'Volkswagen',
 ];
+const carModels = [
+  '4Runner',
+  'Cordoba',
+  'Gran Fury',
+  'Nubira',
+  'Sonic',
+  'Acadia',
+  'Corniche',
+  'Gran Turismo',
+  'Oasis',
+  'Sonoma',
+  'Accent',
+  'Corolla',
+  'Grand Am',
+  'Odyssey',
+  'Sorento',
+  'Acclaim',
+  'Coronet',
+  'Grand Prix',
+  'Omega',
+  'Soul',
+  'Accord',
+  'Corrado',
+  'Grand Vitara',
+  'Omni',
+  'Spark',
+  'Achieva',
+  'Corsair',
+  'Grand Voyager',
+  'Optima',
+  'Spectra',
+  'Aerio',
+  'Corsica',
+  'Greiz',
+  'Outback',
+  'Spectrum',
+];
 
 export function randomColor(): string {
   return `#${getRandom(255).toString(16)}${getRandom(255).toString(
@@ -24,5 +61,7 @@ export function randomColor(): string {
 }
 
 export function randomName(): string {
-  return `${carNames[getRandom(carNames.length)]}`;
+  return `${carBrands[getRandom(carBrands.length)]} ${
+    carModels[getRandom(carModels.length)]
+  }`;
 }

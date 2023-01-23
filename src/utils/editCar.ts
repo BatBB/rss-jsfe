@@ -1,4 +1,5 @@
 import { createCar, deleteCar, getCar, updateCar } from '../API/apiGarage';
+import { deleteWinner } from '../API/apiWinners';
 import renderCars from '../components/renders/renderCars';
 import { updateCarsCount } from '../components/renders/renderTrack';
 import btnDisabled from './btnDisabled';
@@ -74,4 +75,5 @@ export async function removeCar(id: string) {
   await deleteCar(id);
   updateCarsCount();
   await renderCars();
+  await deleteWinner(id);
 }

@@ -104,8 +104,6 @@ export function reset() {
 
 const winnerMessage = (id: string, time: number) => {
   const messageContainer = <HTMLElement>document.querySelector('.message');
-  console.log(messageContainer);
-
   messageContainer.style.visibility = 'visible';
   const messageCar = <HTMLElement>document.querySelector('.message-car');
   const messageTime = <HTMLElement>document.querySelector('.message-time');
@@ -119,7 +117,7 @@ const winnerMessage = (id: string, time: number) => {
 const convertTime = (time: number) => Math.round(time) / 1000;
 
 const hiddenMessage = () => {
-  setInterval(() => {
+  setTimeout(() => {
     const messageContainer = <HTMLElement>document.querySelector('.message');
     messageContainer.style.visibility = 'hidden';
   }, 5000);

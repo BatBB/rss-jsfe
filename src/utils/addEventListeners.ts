@@ -1,3 +1,4 @@
+import { deleteCar } from '../API/apiGarage';
 import App from '../App/App';
 import { race, reset, startCar, stopCar } from './carAnimation';
 import {
@@ -48,6 +49,7 @@ export default function addEventListenersClick() {
 
     if (target.classList.contains('btn-car-remove')) {
       removeCar(id);
+      await deleteCar(id);
     }
 
     if (target.classList.contains('btn-car-start')) {
