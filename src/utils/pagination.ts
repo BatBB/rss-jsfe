@@ -11,15 +11,10 @@ export default async function paginationPage(node: HTMLElement) {
     : 'winners';
   const pageText = document.querySelector(`.page-number`);
   let pageNum = state[`${currentPage}Page`];
-
-  console.log(currentPage);
-
   const countPages =
     currentPage === 'garage'
       ? Math.ceil(state.cars.length / MAX_LIMIT_CARS) || 1
       : Math.ceil(state.winners.length / MAX_LIMIT_WINNERS) || 1;
-  console.log('countPages', state.winners.length);
-
   if (node.classList.contains('btn-pagination-prev')) {
     if (pageNum > 1) {
       pageNum--;
@@ -35,8 +30,6 @@ export default async function paginationPage(node: HTMLElement) {
     }
   }
   state[`${currentPage}Page`] = pageNum;
-  console.log('state[`${currentPage}Page`]', state[`${currentPage}Page`]);
-
   currentPage === 'garage' ? renderCars() : renderTableOfWinners(document.body);
 }
 

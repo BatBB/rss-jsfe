@@ -1,4 +1,4 @@
-import { startStopEngine, switchEngine } from '../API/apiGarage';
+import { getCars, startStopEngine, switchEngine } from '../API/apiGarage';
 import btnDisabled from './btnDisabled';
 import state from './state';
 import { addWinner } from './winners';
@@ -83,19 +83,22 @@ async function switchEngineStatus(id: string, time: number) {
   state.engineIsOk.set(id, engineIsOk);
 }
 
-export function race() {
+export async function race() {
   btnDisabled('btn-race', true);
   state.isRace = true;
-  state.cars.forEach((car) => {
+  const cars = (await getCars(state.garagePage)).cars;
+  cars.forEach((car) => {
     const id = car.id!.toString();
     startCar(id);
   });
   btnDisabled('btn-reset', false);
 }
 
-export function reset() {
+export async function reset() {
   btnDisabled('btn-reset', true);
-  state.cars.forEach(async (car) => {
+  const cars = (await getCars(state.garagePage)).cars;
+
+  cars.forEach(async (car) => {
     const id = car.id!.toString();
     await stopCar(id);
   });

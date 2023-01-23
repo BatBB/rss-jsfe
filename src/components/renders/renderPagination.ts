@@ -1,5 +1,3 @@
-import { getCars } from '../../API/apiGarage';
-import { getWinners } from '../../API/apiWinners';
 import { MAX_LIMIT_CARS, MAX_LIMIT_WINNERS } from '../../interfaces/consts';
 import { pagesType } from '../../interfaces/interfaces';
 import createElement from '../../utils/createElement';

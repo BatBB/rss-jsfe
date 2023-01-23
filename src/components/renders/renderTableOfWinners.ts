@@ -7,11 +7,8 @@ import { updatePagination } from './renderPagination';
 export async function renderTableOfWinners(node: HTMLElement) {
   const table = node.querySelector('.table-body');
   table!.innerHTML = '';
-  console.log('winnersPage', state.winnersPage);
-
   const winners = (await getWinners(state.winnersPage, state.sort, state.order))
     .winners;
-
   winners.forEach((winner, ind) => {
     const tr = createElement('tr', 'winners__table-row');
     const template = `<th class="winners__table-column">${ind + 1}</th>
